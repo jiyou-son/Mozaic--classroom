@@ -103,7 +103,7 @@ export function LandingPage() {
           <div className="demo-class-card">
             <div className="demo-class-card__main">
               <div className="course-chip"><span>09</span><small>SEP<br />2026</small></div>
-              <div><span className="micro-label">DEMO SESSION</span><h3>공학수학 2</h3><p>라그랑지안과 일반화좌표</p></div>
+              <div><span className="micro-label">DEMO SESSION</span><h3>공학수학 2</h3><p>라그랑지안과 일반화좌표 <span>· 2026.09.09</span></p></div>
             </div>
             <div className="demo-class-card__stats">
               <span>세션 코드 <strong>MATH2401</strong></span>

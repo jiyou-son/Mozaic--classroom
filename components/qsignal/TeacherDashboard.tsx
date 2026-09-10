@@ -42,7 +42,7 @@ export function TeacherDashboard() {
         <section className="teacher-dashboard-grid">
           <article className="teacher-panel teacher-map-panel">
             <div className="teacher-panel__head"><div><span className="section-kicker">REAL-TIME CLUSTERING</span><h2>Live Stuck Map</h2><p>지금 수업에서 밀집되는 질문의 흐름이에요.</p></div><span className="teacher-panel__live"><i className="status-dot" /> LIVE</span></div>
-            <WordCloud clusters={clusters} onSelect={(id) => { setSelected(clusters.find((cluster) => cluster.id === id) ?? clusters[0]); setIsDiscussing(false); }} selectedId={selected.id} />
+            <WordCloud clusters={clusters.slice(0, 6)} onSelect={(id) => { setSelected(clusters.find((cluster) => cluster.id === id) ?? clusters[0]); setIsDiscussing(false); }} selectedId={selected.id} />
             <div className="teacher-map-panel__legend"><span><i className="legend-dot legend-dot--teal" /> 이해 방식 · 접근</span><span><i className="legend-dot legend-dot--blue" /> 개념 · 좌표</span><span><i className="legend-dot legend-dot--peach" /> 수식 · 계산</span><p><Sparkles size={14} /> AI가 원문 속 유사한 막힘을 연결했어요</p></div>
           </article>
 
@@ -58,7 +58,7 @@ export function TeacherDashboard() {
             <div className="selected-panel__head"><div><span className="section-kicker">SELECTED CLUSTER</span><h2>{selected.label}</h2><p><span className={`cluster-tone cluster-tone--${selected.tone}`} /> {selected.count}개의 신호 · 최근 8분 동안 <strong>+9</strong></p></div><span className="selected-panel__tag">학생 원문 <b>{selected.questionCount}</b></span></div>
             <div className="selected-panel__body">
               <div className="selected-panel__raw"><h3>관련 원문 질문</h3><div className="selected-panel__question-list">{selected.rawQuestions.slice(0, 3).map((question, index) => <QuestionCard accent={selected.tone === 'blue' ? 'blue' : 'teal'} compact count={Math.max(7, selected.count - index * 4)} key={question} text={question} />)}</div></div>
-              <div className="selected-panel__insight"><div className="ai-summary"><span><Sparkles size={15} /> AI SUMMARY</span><p>{selected.summary}</p></div><div className="action-list"><h3>지금 해볼 설명</h3>{selected.actions.map((action, index) => <p key={action}><b>{String(index + 1).padStart(2, '0')}</b>{action}</p>)}</div><button className={`discuss-button ${isDiscussing ? 'is-active' : ''}`} onClick={() => setIsDiscussing(true)} type="button">{isDiscussing ? <><CheckCircle2 size={17} /> 학생 화면에 현재 다루는 질문으로 표시되었습니다.</> : <><Presentation size={17} /> 이 주제를 지금 다루기 <ArrowUpRight size={16} /></>}</button></div>
+              <div className="selected-panel__insight"><div className="ai-summary"><span><Sparkles size={15} /> AI SUMMARY</span><p>{selected.summary}</p></div><div className="action-list"><h3>지금 해볼 설명</h3>{selected.actions.map((action, index) => <p key={action}><b>{String(index + 1).padStart(2, '0')}</b>{action}</p>)}</div><button className={`discuss-button ${isDiscussing ? 'is-active' : ''}`} onClick={() => { window.localStorage.setItem('qsignal-current-topic', selected.id); setIsDiscussing(true); }} type="button">{isDiscussing ? <><CheckCircle2 size={17} /> 학생 화면에 현재 다루는 질문으로 표시되었습니다.</> : <><Presentation size={17} /> 이 주제를 지금 다루기 <ArrowUpRight size={16} /></>}</button></div>
             </div>
           </article>
 

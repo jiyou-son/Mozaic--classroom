@@ -6,7 +6,7 @@ const galleryItems = [
   { title: '학생 입력 화면', subtitle: 'ANONYMOUS SUBMISSION', href: '/student', type: 'input', icon: UserRound },
   { title: '실시간 질문 클라우드', subtitle: 'LIVE QUESTION CLOUD', href: '/student', type: 'cloud', icon: Cloud },
   { title: '교수자 대시보드', subtitle: 'INSTRUCTOR VIEW', href: '/teacher', type: 'dashboard', icon: MessageSquareText },
-  { title: '질문 클러스터 상세', subtitle: 'RAW QUESTION CLUSTER', href: '/student', type: 'detail', icon: Sparkles },
+  { title: '질문 클러스터 상세', subtitle: 'RAW QUESTION CLUSTER', href: '/student?cluster=lagrangian', type: 'detail', icon: Sparkles },
   { title: '수업 후 리포트', subtitle: 'AFTER-CLASS REPORT', href: '/report', type: 'report', icon: FileText },
 ];
 

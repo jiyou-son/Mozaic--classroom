@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import './qsignal.css';
+import './qsignal-overrides.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://qsignal-classroom.sonjiyou1905.chatgpt.site'),

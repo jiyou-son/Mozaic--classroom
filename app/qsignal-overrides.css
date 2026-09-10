@@ -1,0 +1,13 @@
+.student-current-topic { position: relative; z-index: 2; display: flex; align-items: center; gap: 7px; margin-top: 10px; padding: 9px 11px; color: #397969; border: 1px solid #cdebdc; border-radius: 10px; background: #eaf8f1; font-size: 10px; line-height: 1.45; animation: rise-in .25s ease both; }
+.student-current-topic svg { flex: 0 0 auto; }
+.student-current-topic strong { color: #246a5b; }
+
+.word-cloud__word--freedom { left: 76%; top: 37%; width: 68px; height: 68px; color: #246459; background: #ceead8; }
+.word-cloud__word--ltv { left: 24%; top: 72%; width: 64px; height: 64px; color: #8a5b39; background: #f7e0c7; }
+.word-cloud--student .word-cloud__word--freedom { left: 76%; top: 35%; width: 46px; height: 46px; }
+.word-cloud--student .word-cloud__word--ltv { left: 27%; top: 69%; width: 49px; height: 49px; }
+.word-cloud--student .word-cloud__word--freedom span,
+.word-cloud--student .word-cloud__word--ltv span { font-size: 8px; }
+
+.cluster-modal { width: min(510px, 100%); max-width: min(510px, calc(100vw - 40px)); max-height: min(705px, calc(100vh - 40px)); padding: 0 !important; overflow: auto; border-radius: 23px; box-shadow: 0 28px 80px rgba(5,28,42,.32); }
+.cluster-detail__head [data-slot="dialog-title"] { margin: 8px 0 0; color: var(--navy); font-size: 26px; letter-spacing: -.07em; }

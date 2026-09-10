@@ -1,6 +1,7 @@
 'use client';
 
 import { Heart, Sparkles, UsersRound, X } from 'lucide-react';
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import type { Cluster } from './mockData';
 
 type ClusterDetailProps = {
@@ -17,12 +18,12 @@ export function ClusterDetail({ cluster, reactions = 18, onReact, onClose, modal
       <div className="cluster-detail__head">
         <div>
           <span className="section-kicker">QUESTION CLUSTER</span>
-          <h2>{cluster.cloudLabel} 관련 헷갈림</h2>
+          {modal ? <DialogTitle>{cluster.cloudLabel} 관련 헷갈림</DialogTitle> : <h2>{cluster.cloudLabel} 관련 헷갈림</h2>}
         </div>
         {onClose && <button className="icon-button" onClick={onClose} type="button" aria-label="상세 닫기"><X size={19} /></button>}
       </div>
       <div className="cluster-detail__meta">
-        <span><UsersRound size={14} /> 이 주제를 남긴 학생: {reactions}명</span>
+        <span><UsersRound size={14} /> 이 주제를 남긴 학생: {cluster.studentCount}명</span>
         <span>관련 질문: {cluster.questionCount}개</span>
       </div>
       <div className="cluster-detail__questions">
@@ -34,5 +35,11 @@ export function ClusterDetail({ cluster, reactions = 18, onReact, onClose, modal
   );
 
   if (!modal) return content;
-  return <div className="cluster-modal__backdrop" role="presentation"><div className="cluster-modal" role="dialog" aria-modal="true" aria-label={`${cluster.label} 상세`}>{content}</div></div>;
+  return (
+    <Dialog open onOpenChange={(open) => !open && onClose?.()}>
+      <DialogContent className="cluster-modal" showCloseButton={false}>
+        {content}
+      </DialogContent>
+    </Dialog>
+  );
 }

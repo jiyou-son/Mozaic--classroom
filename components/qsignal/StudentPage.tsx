@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent, useMemo, useState } from 'react';
+import { type FormEvent, useEffect, useMemo, useState } from 'react';
 import { CheckCircle2, ChevronRight, CircleHelp, Send, Sparkles, Waves } from 'lucide-react';
 import { AppShell } from './AppShell';
 import { ClusterDetail } from './ClusterDetail';
@@ -9,30 +9,67 @@ import { WordCloud } from './WordCloud';
 import { clusters, popularQuestions, type Cluster } from './mockData';
 
 type Question = (typeof popularQuestions)[number];
+type SubmittedSignal = { id: string; text: string };
+
+const initialClusterReactions: Record<string, number> = {
+  lagrangian: 26,
+  coordinate: 17,
+  constraint: 12,
+  sign: 9,
+  energy: 7,
+  newton: 5,
+  freedom: 6,
+  ltv: 14,
+};
+
+function findClusterForSignal(value: string, source: Cluster[]) {
+  const normalized = value.replaceAll(' ', '').toLowerCase();
+  return source.find((cluster) => normalized.includes(cluster.cloudLabel.replaceAll(' ', '').toLowerCase())) ?? source[0];
+}
 
 export function StudentPage() {
   const [mode, setMode] = useState<'keyword' | 'question'>('keyword');
   const [input, setInput] = useState('');
   const [questions, setQuestions] = useState<Question[]>(popularQuestions);
-  const [submitted, setSubmitted] = useState<string[]>([]);
+  const [cloudClusters, setCloudClusters] = useState<Cluster[]>(clusters);
+  const [submitted, setSubmitted] = useState<SubmittedSignal[]>([]);
   const [toast, setToast] = useState(false);
-  const [selectedCluster, setSelectedCluster] = useState<Cluster | null>(null);
-  const [clusterReactions, setClusterReactions] = useState(18);
+  const [selectedClusterId, setSelectedClusterId] = useState<string | null>(null);
+  const [clusterReactions, setClusterReactions] = useState(initialClusterReactions);
+  const [activeTopicId, setActiveTopicId] = useState<string | null>(null);
 
   const placeholder = mode === 'keyword'
     ? '예: 라그랑지안, 일반화좌표, 부호 변화'
     : '예: 왜 여기서 뉴턴 방식 대신 라그랑지안을 쓰나요?';
 
   const activeQuestionCount = useMemo(() => questions.reduce((total, question) => total + question.count, 0), [questions]);
+  const selectedCluster = selectedClusterId ? cloudClusters.find((cluster) => cluster.id === selectedClusterId) ?? null : null;
+  const activeTopic = activeTopicId ? cloudClusters.find((cluster) => cluster.id === activeTopicId) ?? null : null;
+
+  useEffect(() => {
+    const syncSharedPrototypeState = () => {
+      const params = new URLSearchParams(window.location.search);
+      const requestedCluster = params.get('cluster');
+      if (requestedCluster && clusters.some((cluster) => cluster.id === requestedCluster)) setSelectedClusterId(requestedCluster);
+      const storedTopic = window.localStorage.getItem('qsignal-current-topic');
+      if (storedTopic && clusters.some((cluster) => cluster.id === storedTopic)) setActiveTopicId(storedTopic);
+    };
+    syncSharedPrototypeState();
+    window.addEventListener('storage', syncSharedPrototypeState);
+    return () => window.removeEventListener('storage', syncSharedPrototypeState);
+  }, []);
 
   function submitSignal(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const value = input.trim();
     if (!value) return;
+
+    const target = findClusterForSignal(value, cloudClusters);
+    setCloudClusters((current) => current.map((cluster) => cluster.id === target.id ? { ...cluster, count: cluster.count + 1, studentCount: cluster.studentCount + 1 } : cluster));
     if (mode === 'question') {
-      setQuestions((current) => [{ id: `new-${Date.now()}`, text: value, count: 1, clusterId: 'lagrangian' }, ...current]);
+      setQuestions((current) => [{ id: `new-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`, text: value, count: 1, clusterId: target.id }, ...current]);
     }
-    setSubmitted((current) => [value, ...current].slice(0, 3));
+    setSubmitted((current) => [{ id: `signal-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`, text: value }, ...current].slice(0, 3));
     setInput('');
     setToast(true);
     window.setTimeout(() => setToast(false), 3400);
@@ -63,12 +100,13 @@ export function StudentPage() {
             <strong>라그랑지안과 일반화좌표</strong>
             <small>익명 참여 중 · MATH2401</small>
           </div>
+          {activeTopic && <section className="student-current-topic"><Sparkles size={14} /><span>교수자가 지금 <strong>{activeTopic.cloudLabel}</strong>을(를) 설명하고 있어요.</span></section>}
 
           <section className="student-submit">
             <div className="student-submit__heading"><span className="student-submit__icon"><CircleHelp size={19} /></span><div><h2>지금 어디서 막혔나요?</h2><p>한 단어만 남겨도 괜찮아요.</p></div></div>
-            <div className="input-tabs" role="tablist" aria-label="질문 입력 방식">
-              <button aria-selected={mode === 'keyword'} className={mode === 'keyword' ? 'is-active' : ''} onClick={() => setMode('keyword')} role="tab" type="button">키워드</button>
-              <button aria-selected={mode === 'question'} className={mode === 'question' ? 'is-active' : ''} onClick={() => setMode('question')} role="tab" type="button">한 줄 질문</button>
+            <div aria-label="질문 입력 방식" className="input-tabs" role="group">
+              <button aria-pressed={mode === 'keyword'} className={mode === 'keyword' ? 'is-active' : ''} onClick={() => setMode('keyword')} type="button">키워드</button>
+              <button aria-pressed={mode === 'question'} className={mode === 'question' ? 'is-active' : ''} onClick={() => setMode('question')} type="button">한 줄 질문</button>
             </div>
             <form onSubmit={submitSignal}>
               <label className="sr-only" htmlFor="student-signal">질문 또는 키워드 입력</label>
@@ -79,12 +117,12 @@ export function StudentPage() {
 
           {toast && <output aria-live="polite" className="student-toast"><CheckCircle2 size={17} /> 올라갔어요. 비슷한 헷갈림을 남긴 학생이 있어요.</output>}
 
-          {submitted.length > 0 && <section className="new-signals"><div><span>방금 올라온 신호</span><small>{activeQuestionCount}개의 공감</small></div><div className="new-signals__chips">{submitted.map((signal) => <span key={signal}>{signal}</span>)}</div></section>}
+          {submitted.length > 0 && <section className="new-signals"><div><span>방금 올라온 신호</span><small>전체 질문 공감 {activeQuestionCount}회</small></div><div className="new-signals__chips">{submitted.map((signal) => <span key={signal.id}>{signal.text}</span>)}</div></section>}
 
           <section className="student-cloud-section">
             <div className="student-section-head"><div><span className="section-kicker">LIVE QUESTION CLOUD</span><h2>현재 많이 올라온 헷갈림</h2></div><Waves size={19} /></div>
-            <WordCloud clusters={clusters} onSelect={(id) => setSelectedCluster(clusters.find((cluster) => cluster.id === id) ?? null)} variant="student" />
-            <button className="signal-tip" onClick={() => setSelectedCluster(clusters[0])} type="button"><Sparkles size={14} /> 단어를 누르면 비슷한 원문 질문을 볼 수 있어요 <ChevronRight size={14} /></button>
+            <WordCloud clusters={cloudClusters} onSelect={setSelectedClusterId} variant="student" />
+            <button className="signal-tip" onClick={() => setSelectedClusterId('lagrangian')} type="button"><Sparkles size={14} /> 단어를 누르면 비슷한 원문 질문을 볼 수 있어요 <ChevronRight size={14} /></button>
           </section>
 
           <section className="student-questions">
@@ -96,7 +134,7 @@ export function StudentPage() {
           <footer className="student-phone__footer">AI는 질문을 고쳐 쓰지 않습니다. · <strong>학생의 말은 그대로</strong></footer>
         </section>
       </main>
-      {selectedCluster && <ClusterDetail cluster={selectedCluster} modal onClose={() => setSelectedCluster(null)} onReact={() => setClusterReactions((count) => count + 1)} reactions={clusterReactions} />}
+      {selectedCluster && <ClusterDetail cluster={selectedCluster} modal onClose={() => setSelectedClusterId(null)} onReact={() => setClusterReactions((current) => ({ ...current, [selectedCluster.id]: (current[selectedCluster.id] ?? 0) + 1 }))} reactions={clusterReactions[selectedCluster.id] ?? 0} />}
     </AppShell>
   );
 }

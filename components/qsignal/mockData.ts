@@ -3,6 +3,7 @@ export type Cluster = {
   label: string;
   cloudLabel: string;
   count: number;
+  studentCount: number;
   trend?: string;
   questionCount: number;
   rawQuestions: string[];
@@ -27,6 +28,7 @@ export const clusters: Cluster[] = [
     label: '라그랑지안 접근',
     cloudLabel: '라그랑지안',
     count: 31,
+    studentCount: 18,
     trend: '급상승',
     questionCount: 6,
     rawQuestions: [
@@ -47,6 +49,7 @@ export const clusters: Cluster[] = [
     label: '일반화좌표',
     cloudLabel: '일반화좌표',
     count: 24,
+    studentCount: 15,
     questionCount: 4,
     rawQuestions: [
       '일반화좌표가 정확히 뭔가요?',
@@ -63,6 +66,7 @@ export const clusters: Cluster[] = [
     label: '구속조건',
     cloudLabel: '구속조건',
     count: 18,
+    studentCount: 11,
     questionCount: 3,
     rawQuestions: [
       '구속조건은 식에 어떻게 넣나요?',
@@ -78,6 +82,7 @@ export const clusters: Cluster[] = [
     label: '수식 전개 부호 변화',
     cloudLabel: '부호 변화',
     count: 12,
+    studentCount: 8,
     questionCount: 3,
     rawQuestions: [
       '이 줄에서 부호가 왜 바뀌나요?',
@@ -93,6 +98,7 @@ export const clusters: Cluster[] = [
     label: '에너지 보존',
     cloudLabel: '에너지보존',
     count: 10,
+    studentCount: 7,
     questionCount: 2,
     rawQuestions: ['에너지 보존이면 왜 이 식이 나와요?', '마찰 있으면 바로 못 쓰는 거죠?'],
     summary: '에너지 보존이 성립하는 조건과 라그랑지안의 에너지 표현이 혼재되어 있습니다.',
@@ -104,11 +110,36 @@ export const clusters: Cluster[] = [
     label: '뉴턴방정식',
     cloudLabel: '뉴턴방정식',
     count: 8,
+    studentCount: 5,
     questionCount: 2,
     rawQuestions: ['뉴턴식이 더 익숙한데 왜 안 써요?', '힘을 다 쓰면 되는 거 아닌가요?'],
     summary: '두 접근법의 선택 기준이 아직 명확히 분리되지 않았습니다.',
     actions: ['접근법 비교표 제시', '복잡한 구속의 예시 사용', '선택 기준 다시 언급'],
     tone: 'lilac',
+  },
+  {
+    id: 'freedom',
+    label: '자유도',
+    cloudLabel: '자유도',
+    count: 9,
+    studentCount: 6,
+    questionCount: 2,
+    rawQuestions: ['자유도가 하나라는 건 어떻게 알아요?', '좌표 개수랑 자유도는 항상 같나요?'],
+    summary: '독립적으로 정할 수 있는 변수의 수와 좌표 선택이 아직 연결되지 않았습니다.',
+    actions: ['진자의 자유도부터 다시 보기', '독립 변수와 좌표 수 비교'],
+    tone: 'mint',
+  },
+  {
+    id: 'ltv',
+    label: 'L=T-V',
+    cloudLabel: 'L=T-V',
+    count: 16,
+    studentCount: 10,
+    questionCount: 3,
+    rawQuestions: ['L=T-V를 그냥 외우면 되나요?', 'T랑 V는 어디까지 넣는 거예요?', '왜 더하기가 아니라 빼기인가요?'],
+    summary: '라그랑지안을 구성하는 두 에너지 항의 의미와 부호가 함께 헷갈리고 있습니다.',
+    actions: ['T와 V를 색으로 구분', '간단한 진자에 대입', '부호의 물리적 의미 설명'],
+    tone: 'peach',
   },
 ];
 
