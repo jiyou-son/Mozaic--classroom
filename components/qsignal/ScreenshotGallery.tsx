@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { ArrowUpRight, Cloud, FileText, MessageSquareText, Sparkles, UserRound } from 'lucide-react';
 import { AppShell } from './AppShell';
 
@@ -23,7 +22,7 @@ export function ScreenshotGallery() {
     <AppShell active="screens">
       <main className="gallery-page">
         <section className="gallery-page__head"><div><span className="section-kicker">PRESENTATION READY</span><h1>QSignal <em>화면 갤러리</em></h1><p>공모전 제출 자료에 바로 쓸 수 있도록, 핵심 경험을 한 장면씩 담았습니다.</p></div><div className="gallery-page__badge"><Sparkles size={17} /><span>5개의<br /><strong>핵심 장면</strong></span></div></section>
-        <section className="gallery-grid">{galleryItems.map((item, index) => { const Icon = item.icon; return <Link className={`gallery-card gallery-card--${item.type}`} href={item.href} key={item.title}><div className="gallery-card__meta"><span>{String(index + 1).padStart(2, '0')} · {item.subtitle}</span><Icon size={17} /></div><h2>{item.title}</h2><MiniScreen type={item.type} /><div className="gallery-card__open">실제 화면 보기 <ArrowUpRight size={15} /></div></Link>; })}</section>
+        <section className="gallery-grid">{galleryItems.map((item, index) => { const Icon = item.icon; return <a className={`gallery-card gallery-card--${item.type}`} href={item.href} key={item.title}><div className="gallery-card__meta"><span>{String(index + 1).padStart(2, '0')} · {item.subtitle}</span><Icon size={17} /></div><h2>{item.title}</h2><MiniScreen type={item.type} /><div className="gallery-card__open">실제 화면 보기 <ArrowUpRight size={15} /></div></a>; })}</section>
         <section className="gallery-note"><Sparkles size={17} /><p><strong>QSignal의 AI는 대화를 대체하지 않습니다.</strong> 학생의 원문 질문을 그대로 보존하며, 수업 안에서 함께 볼 수 있는 신호로만 연결합니다.</p></section>
       </main>
     </AppShell>

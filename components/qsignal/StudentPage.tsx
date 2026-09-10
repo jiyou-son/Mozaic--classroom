@@ -34,6 +34,7 @@ export function StudentPage() {
   const [cloudClusters, setCloudClusters] = useState<Cluster[]>(clusters);
   const [submitted, setSubmitted] = useState<SubmittedSignal[]>([]);
   const [toast, setToast] = useState(false);
+  const [inputError, setInputError] = useState(false);
   const [selectedClusterId, setSelectedClusterId] = useState<string | null>(null);
   const [clusterReactions, setClusterReactions] = useState(initialClusterReactions);
   const [activeTopicId, setActiveTopicId] = useState<string | null>(null);
@@ -62,9 +63,13 @@ export function StudentPage() {
   function submitSignal(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const value = input.trim();
-    if (!value) return;
+    if (!value) {
+      setInputError(true);
+      return;
+    }
 
     const target = findClusterForSignal(value, cloudClusters);
+    setInputError(false);
     setCloudClusters((current) => current.map((cluster) => cluster.id === target.id ? { ...cluster, count: cluster.count + 1, studentCount: cluster.studentCount + 1 } : cluster));
     if (mode === 'question') {
       setQuestions((current) => [{ id: `new-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`, text: value, count: 1, clusterId: target.id }, ...current]);
@@ -110,7 +115,8 @@ export function StudentPage() {
             </div>
             <form onSubmit={submitSignal}>
               <label className="sr-only" htmlFor="student-signal">질문 또는 키워드 입력</label>
-              <textarea id="student-signal" onChange={(event) => setInput(event.target.value)} placeholder={placeholder} value={input} rows={mode === 'keyword' ? 2 : 3} />
+              <textarea aria-invalid={inputError} id="student-signal" onChange={(event) => { setInput(event.target.value); setInputError(false); }} placeholder={placeholder} value={input} rows={mode === 'keyword' ? 2 : 3} />
+              {inputError && <p className="student-input-error" role="alert">한 단어나 질문을 먼저 적어주세요.</p>}
               <button className="student-submit__button" type="submit">익명으로 올리기 <Send size={15} /></button>
             </form>
           </section>

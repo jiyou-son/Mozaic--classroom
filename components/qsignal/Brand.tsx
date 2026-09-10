@@ -1,5 +1,3 @@
-import Link from 'next/link';
-
 type BrandProps = {
   inverse?: boolean;
   compact?: boolean;
@@ -7,7 +5,7 @@ type BrandProps = {
 
 export function Brand({ inverse = false, compact = false }: BrandProps) {
   return (
-    <Link
+    <a
       aria-label="QSignal 홈"
       className={`brand ${inverse ? 'brand--inverse' : ''}`}
       href="/"
@@ -22,6 +20,6 @@ export function Brand({ inverse = false, compact = false }: BrandProps) {
           <small>혼자 묻던 질문을 수업의 신호로.</small>
         </span>
       )}
-    </Link>
+    </a>
   );
 }

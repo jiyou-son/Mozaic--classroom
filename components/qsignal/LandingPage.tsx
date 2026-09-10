@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import {
   ArrowRight,
   BarChart3,
@@ -43,12 +42,12 @@ export function LandingPage() {
                 교수자가 수업 중 바로 파악할 수 있도록 돕습니다.
               </p>
               <div className="hero-actions">
-                <Link className="button button--primary" href="/student">
+                <a className="button button--primary" href="/student">
                   학생으로 참여하기 <ArrowRight size={17} />
-                </Link>
-                <Link className="button button--ghost" href="/teacher">
+                </a>
+                <a className="button button--ghost" href="/teacher">
                   교수자 대시보드 보기
-                </Link>
+                </a>
               </div>
               <div className="hero-trust">
                 <span className="hero-trust__avatars" aria-hidden="true">
@@ -98,7 +97,7 @@ export function LandingPage() {
         <section className="demo-section">
           <div className="demo-section__heading">
             <div><span className="section-kicker">TODAY&apos;S DEMO CLASS</span><h2>수업의 빈틈을,<br />실시간으로 채워보세요.</h2></div>
-            <Link className="text-link" href="/screens">전체 화면 살펴보기 <ArrowRight size={16} /></Link>
+            <a className="text-link" href="/screens">전체 화면 살펴보기 <ArrowRight size={16} /></a>
           </div>
           <div className="demo-class-card">
             <div className="demo-class-card__main">
@@ -109,7 +108,7 @@ export function LandingPage() {
               <span>세션 코드 <strong>MATH2401</strong></span>
               <span>진행 중 <i className="status-dot" /></span>
             </div>
-            <Link className="demo-class-card__enter" href="/student">학생 화면으로 입장 <ArrowRight size={18} /></Link>
+            <a className="demo-class-card__enter" href="/student">학생 화면으로 입장 <ArrowRight size={18} /></a>
           </div>
         </section>
 
@@ -129,7 +128,7 @@ export function LandingPage() {
 
         <section className="landing-cta">
           <div><span className="section-kicker">BETTER TOGETHER</span><h2>질문이 사라지지 않는<br />강의실을 시작하세요.</h2></div>
-          <Link className="button button--light" href="/teacher">대시보드 미리보기 <ArrowRight size={17} /></Link>
+          <a className="button button--light" href="/teacher">대시보드 미리보기 <ArrowRight size={17} /></a>
           <span className="landing-cta__ornament" aria-hidden="true"><Check size={50} /></span>
         </section>
       </main>

@@ -1,5 +1,4 @@
 import type { ReactNode } from 'react';
-import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { Brand } from './Brand';
 
@@ -24,19 +23,19 @@ export function AppShell({ children, active = 'home', minimal = false }: AppShel
           {!minimal && (
             <nav aria-label="주요 페이지" className="site-nav">
               {navItems.map((item) => (
-                <Link
+                <a
                   className={active === item.key ? 'site-nav__link is-active' : 'site-nav__link'}
                   href={item.href}
                   key={item.key}
                 >
                   {item.label}
-                </Link>
+                </a>
               ))}
             </nav>
           )}
-          <Link className="header-cta" href="/student">
+          <a className="header-cta" href="/student">
             데모 참여하기 <ArrowUpRight size={15} strokeWidth={2.2} />
-          </Link>
+          </a>
         </div>
       </header>
       {children}
