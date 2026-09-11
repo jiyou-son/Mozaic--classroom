@@ -7,6 +7,7 @@ import {
   ChevronRight,
   CircleGauge,
   Clock3,
+  Copy,
   MessageSquareText,
   Sparkles,
   UsersRound,
@@ -16,15 +17,28 @@ import { QuestionCard } from './QuestionCard';
 import { StatCard } from './StatCard';
 import { WordCloud } from './WordCloud';
 import { classSession, clusters, type Cluster } from './mockData';
+import { getQrJoinPath } from './sessionAccess';
 
 export function TeacherDashboard() {
   const [selected, setSelected] = useState<Cluster>(clusters[0]);
+  const [copied, setCopied] = useState(false);
+
+  async function copyJoinLink() {
+    const joinLink = new URL(getQrJoinPath(), window.location.origin).toString();
+    try {
+      await window.navigator.clipboard.writeText(joinLink);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 2200);
+    } catch {
+      window.prompt('학생 입장 링크를 복사하세요.', joinLink);
+    }
+  }
 
   return (
     <AppShell active="teacher">
       <main className="teacher-page">
         <section className="teacher-topbar">
-          <div className="teacher-topbar__course"><span className="teacher-topbar__label">QSIGNAL INSTRUCTOR</span><h1>{classSession.name}</h1><p><i className="status-dot" /> Live Session: <strong>{classSession.sessionCode}</strong></p></div>
+          <div className="teacher-topbar__course"><span className="teacher-topbar__label">QSIGNAL INSTRUCTOR</span><h1>{classSession.name}</h1><p><i className="status-dot" /> {classSession.university} · <strong>{classSession.instructor}</strong></p></div>
           <div className="teacher-topbar__tools"><span className="teacher-topbar__time"><Clock3 size={15} /> 10:32 AM · 수업 진행 중</span><button aria-label="알림" className="icon-button" type="button"><BellRing size={18} /></button><span className="teacher-avatar">KJ</span></div>
         </section>
 
@@ -33,6 +47,12 @@ export function TeacherDashboard() {
           <StatCard detail="최근 10분 +18" icon={<MessageSquareText size={19} />} label="제출된 질문 · 키워드" tone="blue" value={`${classSession.submissions}개`} />
           <StatCard detail="질문당 평균 1.9회" icon={<CircleGauge size={19} />} label="공감 반응" tone="peach" value={`${classSession.reactions}개`} />
           <article className="teacher-signal-status"><span><i className="status-dot" /> LIVE ANALYSIS</span><strong>학생의 원문을<br />바꾸지 않습니다.</strong><Sparkles size={18} /></article>
+        </section>
+
+        <section aria-label="학생 입장 안내" className="teacher-access">
+          <div className="teacher-access__copy"><span>STUDENT ACCESS</span><h2>휴대폰은 QR로, 모든 기기는 코드로</h2><p>카메라가 없는 노트북·태블릿도 같은 참여 화면을 사용할 수 있어요.</p></div>
+          <div className="teacher-access__qr"><img alt={`${classSession.name} 학생 입장 QR 코드`} src="/session-join-qr.svg" /><span>휴대폰 QR 입장</span></div>
+          <div className="teacher-access__code"><span>입장 코드</span><strong>{classSession.accessCode}</strong><button onClick={copyJoinLink} type="button"><Copy size={14} /> {copied ? '입장 링크 복사됨' : '입장 링크 복사'}</button></div>
         </section>
 
         <section className="teacher-dashboard-grid">

@@ -13,9 +13,10 @@ export type Cluster = {
 };
 
 export const classSession = {
-  name: '공학수학 2',
-  topic: '라그랑지안과 일반화좌표',
-  sessionCode: 'MATH2401',
+  university: '서울대학교',
+  name: '자료구조의 기초',
+  instructor: '한보형 교수',
+  accessCode: 'DS-2401',
   date: '2026.09.09',
   participants: 87,
   submissions: 132,

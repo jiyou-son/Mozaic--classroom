@@ -18,6 +18,7 @@ Open the local URL printed in the terminal (normally `http://localhost:3000`). T
 | Route | Recommended use |
 | --- | --- |
 | `/` | QSignal landing page and role selection |
+| `/join` | QR-linked and entry-code student access |
 | `/student` | Mobile-style anonymous student submission experience |
 | `/teacher` | Desktop instructor live stuck map and question clustering dashboard |
 | `/report` | Generated-looking after-class question report |
@@ -26,6 +27,8 @@ Open the local URL printed in the terminal (normally `http://localhost:3000`). T
 ## Prototype interactions
 
 - Submit a keyword or a raw one-line question on `/student`; it is added locally and shown as a newly submitted signal.
+- Join from a QR link or enter the prototype code `DS-2401`; the confirmed entry is stored only in the current browser.
+- The same student interaction surface adapts from a phone frame to a tablet panel and a laptop workspace without changing its interactions.
 - Use **나도 궁금해요** to increase local empathy counts.
 - Select a word in the question cloud to inspect its raw related questions.
 

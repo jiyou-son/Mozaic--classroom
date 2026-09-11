@@ -13,7 +13,7 @@ export function ReportPage() {
     <AppShell active="report">
       <main className="report-page">
         <section className="report-hero">
-          <div className="report-hero__inner"><div><span className="report-hero__eyebrow"><Sparkles size={14} /> GENERATED AFTER CLASS</span><h1>수업 후 질문 리포트</h1><p>{classSession.name} · {classSession.topic} · {classSession.date}</p></div><div className="report-hero__stamp"><FileText size={23} /><span>QSignal<br /><strong>SESSION REPORT</strong></span></div></div>
+          <div className="report-hero__inner"><div><span className="report-hero__eyebrow"><Sparkles size={14} /> GENERATED AFTER CLASS</span><h1>수업 후 질문 리포트</h1><p>{classSession.name} · {classSession.instructor} · {classSession.date}</p></div><div className="report-hero__stamp"><FileText size={23} /><span>QSignal<br /><strong>SESSION REPORT</strong></span></div></div>
         </section>
 
         <section className="report-summary" aria-label="수업 요약"><article><span>참여 학생</span><strong>{classSession.participants}명</strong><small>수업 중 익명 참여</small></article><article><span>수집된 질문 신호</span><strong>{classSession.submissions}개</strong><small>키워드와 원문 질문</small></article><article><span>설명 후 이해됐어요</span><strong>64%</strong><small>학생 피드백 기준</small></article><article className="report-summary__note"><Sparkles size={18} /><p>AI는 원문을 바꾸지 않고,<br /><strong>반복된 막힘을 발견했어요.</strong></p></article></section>

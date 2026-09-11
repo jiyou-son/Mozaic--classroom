@@ -6,7 +6,8 @@ import { AppShell } from './AppShell';
 import { ClusterDetail } from './ClusterDetail';
 import { QuestionCard } from './QuestionCard';
 import { WordCloud } from './WordCloud';
-import { clusters, popularQuestions, type Cluster } from './mockData';
+import { classSession, clusters, popularQuestions, type Cluster } from './mockData';
+import { hasJoinedSession, isValidEntryCode, markSessionJoined } from './sessionAccess';
 
 type Question = (typeof popularQuestions)[number];
 type SubmittedSignal = { id: string; text: string };
@@ -37,6 +38,7 @@ export function StudentPage() {
   const [inputError, setInputError] = useState(false);
   const [selectedClusterId, setSelectedClusterId] = useState<string | null>(null);
   const [clusterReactions, setClusterReactions] = useState(initialClusterReactions);
+  const [accessReady, setAccessReady] = useState(false);
 
   const placeholder = mode === 'keyword'
     ? '예: 라그랑지안, 일반화좌표, 부호 변화'
@@ -47,8 +49,23 @@ export function StudentPage() {
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
+    const entryCode = params.get('code');
+    if (entryCode && isValidEntryCode(entryCode)) {
+      markSessionJoined();
+      params.delete('code');
+      const cleanPath = `${window.location.pathname}${params.size ? `?${params.toString()}` : ''}`;
+      window.history.replaceState(null, '', cleanPath);
+    }
+
+    if (!hasJoinedSession()) {
+      const requestedPath = `${window.location.pathname}${window.location.search}`;
+      window.location.replace(`/join?next=${encodeURIComponent(requestedPath)}`);
+      return;
+    }
+
     const requestedCluster = params.get('cluster');
     if (requestedCluster && clusters.some((cluster) => cluster.id === requestedCluster)) setSelectedClusterId(requestedCluster);
+    setAccessReady(true);
   }, []);
 
   function submitSignal(event: FormEvent<HTMLFormElement>) {
@@ -75,6 +92,14 @@ export function StudentPage() {
     setQuestions((current) => current.map((question) => question.id === id ? { ...question, count: question.count + 1 } : question));
   }
 
+  if (!accessReady) {
+    return (
+      <AppShell active="student">
+        <main aria-live="polite" className="student-access-loading"><span className="section-kicker">STUDENT ACCESS</span><p>수업 입장을 확인하고 있어요.</p></main>
+      </AppShell>
+    );
+  }
+
   return (
     <AppShell active="student">
       <main className="student-page">
@@ -85,40 +110,44 @@ export function StudentPage() {
           <div className="student-page__legend"><span><i className="status-dot" /> 익명 참여 중</span><span><Sparkles size={13} /> AI는 유사한 질문만 묶어요</span></div>
         </div>
 
-        <section className="student-phone" aria-label="QSignal 학생 참여 화면">
-          <div className="student-phone__island"><span /></div>
+        <section className="student-phone student-surface" aria-label="QSignal 학생 참여 화면">
+          <div aria-hidden="true" className="student-phone__island"><span /></div>
           <header className="student-phone__header">
-            <div><span className="student-phone__brand">QSignal</span><p>서울대학교</p></div>
+            <div><span className="student-phone__brand">QSignal</span><p>{classSession.university}</p></div>
             <span className="student-live-pill"><i className="status-dot" /> LIVE</span>
           </header>
           <div className="student-phone__course">
-            <strong>자료구조의 기초</strong>
-            <small>한보형 교수</small>
+            <strong>{classSession.name}</strong>
+            <small>{classSession.instructor}</small>
           </div>
 
-          <section className="student-submit">
-            <div className="student-submit__heading"><span className="student-submit__icon"><CircleHelp size={19} /></span><div><h2>지금 어디서 막혔나요?</h2><p>한 단어만 남겨도 괜찮아요.</p></div></div>
-            <div aria-label="질문 입력 방식" className="input-tabs" role="group">
-              <button aria-pressed={mode === 'keyword'} className={mode === 'keyword' ? 'is-active' : ''} onClick={() => setMode('keyword')} type="button">키워드</button>
-              <button aria-pressed={mode === 'question'} className={mode === 'question' ? 'is-active' : ''} onClick={() => setMode('question')} type="button">한 줄 질문</button>
+          <div className="student-workspace">
+            <div className="student-workspace__compose">
+              <section className="student-submit">
+                <div className="student-submit__heading"><span className="student-submit__icon"><CircleHelp size={19} /></span><div><h2>지금 어디서 막혔나요?</h2><p>한 단어만 남겨도 괜찮아요.</p></div></div>
+                <div aria-label="질문 입력 방식" className="input-tabs" role="group">
+                  <button aria-pressed={mode === 'keyword'} className={mode === 'keyword' ? 'is-active' : ''} onClick={() => setMode('keyword')} type="button">키워드</button>
+                  <button aria-pressed={mode === 'question'} className={mode === 'question' ? 'is-active' : ''} onClick={() => setMode('question')} type="button">한 줄 질문</button>
+                </div>
+                <form onSubmit={submitSignal}>
+                  <label className="sr-only" htmlFor="student-signal">질문 또는 키워드 입력</label>
+                  <textarea aria-invalid={inputError} id="student-signal" onChange={(event) => { setInput(event.target.value); setInputError(false); }} placeholder={placeholder} value={input} rows={mode === 'keyword' ? 2 : 3} />
+                  {inputError && <p className="student-input-error" role="alert">한 단어나 질문을 먼저 적어주세요.</p>}
+                  <button className="student-submit__button" type="submit">익명으로 올리기 <Send size={15} /></button>
+                </form>
+              </section>
+
+              {toast && <output aria-live="polite" className="student-toast"><CheckCircle2 size={17} /> 올라갔어요. 비슷한 헷갈림을 남긴 학생이 있어요.</output>}
+
+              {submitted.length > 0 && <section className="new-signals"><div><span>방금 올라온 신호</span><small>전체 질문 공감 {activeQuestionCount}회</small></div><div className="new-signals__chips">{submitted.map((signal) => <span key={signal.id}>{signal.text}</span>)}</div></section>}
             </div>
-            <form onSubmit={submitSignal}>
-              <label className="sr-only" htmlFor="student-signal">질문 또는 키워드 입력</label>
-              <textarea aria-invalid={inputError} id="student-signal" onChange={(event) => { setInput(event.target.value); setInputError(false); }} placeholder={placeholder} value={input} rows={mode === 'keyword' ? 2 : 3} />
-              {inputError && <p className="student-input-error" role="alert">한 단어나 질문을 먼저 적어주세요.</p>}
-              <button className="student-submit__button" type="submit">익명으로 올리기 <Send size={15} /></button>
-            </form>
-          </section>
 
-          {toast && <output aria-live="polite" className="student-toast"><CheckCircle2 size={17} /> 올라갔어요. 비슷한 헷갈림을 남긴 학생이 있어요.</output>}
-
-          {submitted.length > 0 && <section className="new-signals"><div><span>방금 올라온 신호</span><small>전체 질문 공감 {activeQuestionCount}회</small></div><div className="new-signals__chips">{submitted.map((signal) => <span key={signal.id}>{signal.text}</span>)}</div></section>}
-
-          <section className="student-cloud-section">
-            <div className="student-section-head"><div><span className="section-kicker">LIVE QUESTION CLOUD</span><h2>또 무엇이 궁금한가요?</h2></div><Waves size={19} /></div>
-            <WordCloud clusters={cloudClusters} onSelect={setSelectedClusterId} variant="student" />
-            <button className="signal-tip" onClick={() => setSelectedClusterId('lagrangian')} type="button"><Sparkles size={14} /> 단어를 누르면 비슷한 원문 질문을 볼 수 있어요 <ChevronRight size={14} /></button>
-          </section>
+            <section className="student-cloud-section">
+              <div className="student-section-head"><div><span className="section-kicker">LIVE QUESTION CLOUD</span><h2>또 무엇이 궁금한가요?</h2></div><Waves size={19} /></div>
+              <WordCloud clusters={cloudClusters} onSelect={setSelectedClusterId} variant="student" />
+              <button className="signal-tip" onClick={() => setSelectedClusterId('lagrangian')} type="button"><Sparkles size={14} /> 단어를 누르면 비슷한 원문 질문을 볼 수 있어요 <ChevronRight size={14} /></button>
+            </section>
+          </div>
 
           <section className="student-questions">
             <div className="student-section-head"><div><span className="section-kicker">MOST RESONATED</span><h2>많이 공감한 질문</h2></div><span className="student-questions__total">{questions.length}개</span></div>

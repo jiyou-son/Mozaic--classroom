@@ -9,7 +9,7 @@ type AppShellProps = {
 };
 
 const navItems = [
-  { href: '/student', label: '학생 화면', key: 'student' },
+  { href: '/join', label: '학생 화면', key: 'student' },
   { href: '/teacher', label: '교수자 대시보드', key: 'teacher' },
   { href: '/report', label: '수업 후 리포트', key: 'report' },
 ] as const;
@@ -33,7 +33,7 @@ export function AppShell({ children, active = 'home', minimal = false }: AppShel
               ))}
             </nav>
           )}
-          <a className="header-cta" href="/student">
+          <a className="header-cta" href="/join">
             데모 참여하기 <ArrowUpRight size={15} strokeWidth={2.2} />
           </a>
         </div>

@@ -9,6 +9,7 @@ import {
   UsersRound,
 } from 'lucide-react';
 import { AppShell } from './AppShell';
+import { classSession } from './mockData';
 
 const featureItems = [
   { icon: MessageCircleMore, title: '익명 키워드 제출', description: '한 단어의 막힘도 수업 안으로' },
@@ -42,7 +43,7 @@ export function LandingPage() {
                 교수자가 수업 중 바로 파악할 수 있도록 돕습니다.
               </p>
               <div className="hero-actions">
-                <a className="button button--primary" href="/student">
+                <a className="button button--primary" href="/join">
                   학생으로 참여하기 <ArrowRight size={17} />
                 </a>
                 <a className="button button--ghost" href="/teacher">
@@ -57,15 +58,15 @@ export function LandingPage() {
               </div>
             </div>
 
-            <div className="signal-preview" aria-label="공학수학 2의 실시간 질문 시그널 미리보기">
+            <div className="signal-preview" aria-label={`${classSession.name}의 실시간 질문 시그널 미리보기`}>
               <div className="signal-preview__chrome">
                 <span className="status-dot" />
                 <span>LIVE SIGNAL</span>
-                <span className="signal-preview__room">MATH2401</span>
+                <span className="signal-preview__room">{classSession.university}</span>
               </div>
               <div className="signal-preview__head">
                 <div>
-                  <span className="micro-label">공학수학 2 · 09.09</span>
+                  <span className="micro-label">{classSession.name} · {classSession.instructor}</span>
                   <h2>지금 수업에서<br />어디가 헷갈리나요?</h2>
                 </div>
                 <div className="signal-preview__count"><strong>132</strong><span>개의 신호</span></div>
@@ -102,13 +103,13 @@ export function LandingPage() {
           <div className="demo-class-card">
             <div className="demo-class-card__main">
               <div className="course-chip"><span>09</span><small>SEP<br />2026</small></div>
-              <div><span className="micro-label">DEMO SESSION</span><h3>공학수학 2</h3><p>라그랑지안과 일반화좌표 <span>· 2026.09.09</span></p></div>
+              <div><span className="micro-label">DEMO SESSION</span><h3>{classSession.name}</h3><p>{classSession.instructor} <span>· {classSession.date}</span></p></div>
             </div>
             <div className="demo-class-card__stats">
-              <span>세션 코드 <strong>MATH2401</strong></span>
+              <span>입장 코드 <strong>{classSession.accessCode}</strong></span>
               <span>진행 중 <i className="status-dot" /></span>
             </div>
-            <a className="demo-class-card__enter" href="/student">학생 화면으로 입장 <ArrowRight size={18} /></a>
+            <a className="demo-class-card__enter" href="/join">학생 화면으로 입장 <ArrowRight size={18} /></a>
           </div>
         </section>
 
