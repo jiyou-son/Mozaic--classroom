@@ -115,7 +115,7 @@ export function StudentPage() {
           {submitted.length > 0 && <section className="new-signals"><div><span>방금 올라온 신호</span><small>전체 질문 공감 {activeQuestionCount}회</small></div><div className="new-signals__chips">{submitted.map((signal) => <span key={signal.id}>{signal.text}</span>)}</div></section>}
 
           <section className="student-cloud-section">
-            <div className="student-section-head"><div><span className="section-kicker">LIVE QUESTION CLOUD</span><h2>현재 많이 올라온 헷갈림</h2></div><Waves size={19} /></div>
+            <div className="student-section-head"><div><span className="section-kicker">LIVE QUESTION CLOUD</span><h2>또 무엇이 궁금한가요?</h2></div><Waves size={19} /></div>
             <WordCloud clusters={cloudClusters} onSelect={setSelectedClusterId} variant="student" />
             <button className="signal-tip" onClick={() => setSelectedClusterId('lagrangian')} type="button"><Sparkles size={14} /> 단어를 누르면 비슷한 원문 질문을 볼 수 있어요 <ChevronRight size={14} /></button>
           </section>
