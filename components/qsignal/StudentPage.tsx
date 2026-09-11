@@ -110,7 +110,7 @@ export function StudentPage() {
           <div className="student-page__legend"><span><i className="status-dot" /> 익명 참여 중</span><span><Sparkles size={13} /> AI는 유사한 질문만 묶어요</span></div>
         </div>
 
-        <section className="student-phone student-surface" aria-label="QSignal 학생 참여 화면">
+        <section className="student-phone" aria-label="QSignal 학생 참여 화면">
           <div aria-hidden="true" className="student-phone__island"><span /></div>
           <header className="student-phone__header">
             <div><span className="student-phone__brand">QSignal</span><p>{classSession.university}</p></div>
@@ -121,8 +121,6 @@ export function StudentPage() {
             <small>{classSession.instructor}</small>
           </div>
 
-          <div className="student-workspace">
-            <div className="student-workspace__compose">
               <section className="student-submit">
                 <div className="student-submit__heading"><span className="student-submit__icon"><CircleHelp size={19} /></span><div><h2>지금 어디서 막혔나요?</h2><p>한 단어만 남겨도 괜찮아요.</p></div></div>
                 <div aria-label="질문 입력 방식" className="input-tabs" role="group">
@@ -140,14 +138,11 @@ export function StudentPage() {
               {toast && <output aria-live="polite" className="student-toast"><CheckCircle2 size={17} /> 올라갔어요. 비슷한 헷갈림을 남긴 학생이 있어요.</output>}
 
               {submitted.length > 0 && <section className="new-signals"><div><span>방금 올라온 신호</span><small>전체 질문 공감 {activeQuestionCount}회</small></div><div className="new-signals__chips">{submitted.map((signal) => <span key={signal.id}>{signal.text}</span>)}</div></section>}
-            </div>
-
             <section className="student-cloud-section">
               <div className="student-section-head"><div><span className="section-kicker">LIVE QUESTION CLOUD</span><h2>또 무엇이 궁금한가요?</h2></div><Waves size={19} /></div>
               <WordCloud clusters={cloudClusters} onSelect={setSelectedClusterId} variant="student" />
               <button className="signal-tip" onClick={() => setSelectedClusterId('lagrangian')} type="button"><Sparkles size={14} /> 단어를 누르면 비슷한 원문 질문을 볼 수 있어요 <ChevronRight size={14} /></button>
             </section>
-          </div>
 
           <section className="student-questions">
             <div className="student-section-head"><div><span className="section-kicker">MOST RESONATED</span><h2>많이 공감한 질문</h2></div><span className="student-questions__total">{questions.length}개</span></div>
