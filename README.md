@@ -28,6 +28,5 @@ Open the local URL printed in the terminal (normally `http://localhost:3000`). T
 - Submit a keyword or a raw one-line question on `/student`; it is added locally and shown as a newly submitted signal.
 - Use **나도 궁금해요** to increase local empathy counts.
 - Select a word in the question cloud to inspect its raw related questions.
-- Choose a cluster from the instructor dashboard and use **이 주제를 지금 다루기** to show the active teaching state.
 
 The interface is Korean-first, responsive, and designed for a polished 1440px desktop capture alongside a centered mobile student view.

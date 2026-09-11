@@ -37,7 +37,6 @@ export function StudentPage() {
   const [inputError, setInputError] = useState(false);
   const [selectedClusterId, setSelectedClusterId] = useState<string | null>(null);
   const [clusterReactions, setClusterReactions] = useState(initialClusterReactions);
-  const [activeTopicId, setActiveTopicId] = useState<string | null>(null);
 
   const placeholder = mode === 'keyword'
     ? '예: 라그랑지안, 일반화좌표, 부호 변화'
@@ -45,19 +44,11 @@ export function StudentPage() {
 
   const activeQuestionCount = useMemo(() => questions.reduce((total, question) => total + question.count, 0), [questions]);
   const selectedCluster = selectedClusterId ? cloudClusters.find((cluster) => cluster.id === selectedClusterId) ?? null : null;
-  const activeTopic = activeTopicId ? cloudClusters.find((cluster) => cluster.id === activeTopicId) ?? null : null;
 
   useEffect(() => {
-    const syncSharedPrototypeState = () => {
-      const params = new URLSearchParams(window.location.search);
-      const requestedCluster = params.get('cluster');
-      if (requestedCluster && clusters.some((cluster) => cluster.id === requestedCluster)) setSelectedClusterId(requestedCluster);
-      const storedTopic = window.localStorage.getItem('qsignal-current-topic');
-      if (storedTopic && clusters.some((cluster) => cluster.id === storedTopic)) setActiveTopicId(storedTopic);
-    };
-    syncSharedPrototypeState();
-    window.addEventListener('storage', syncSharedPrototypeState);
-    return () => window.removeEventListener('storage', syncSharedPrototypeState);
+    const params = new URLSearchParams(window.location.search);
+    const requestedCluster = params.get('cluster');
+    if (requestedCluster && clusters.some((cluster) => cluster.id === requestedCluster)) setSelectedClusterId(requestedCluster);
   }, []);
 
   function submitSignal(event: FormEvent<HTMLFormElement>) {
@@ -105,7 +96,6 @@ export function StudentPage() {
             <strong>라그랑지안과 일반화좌표</strong>
             <small>익명 참여 중 · MATH2401</small>
           </div>
-          {activeTopic && <section className="student-current-topic"><Sparkles size={14} /><span>교수자가 지금 <strong>{activeTopic.cloudLabel}</strong>을(를) 설명하고 있어요.</span></section>}
 
           <section className="student-submit">
             <div className="student-submit__heading"><span className="student-submit__icon"><CircleHelp size={19} /></span><div><h2>지금 어디서 막혔나요?</h2><p>한 단어만 남겨도 괜찮아요.</p></div></div>

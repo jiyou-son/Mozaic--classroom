@@ -1,7 +1,3 @@
-.student-current-topic { position: relative; z-index: 2; display: flex; align-items: center; gap: 7px; margin-top: 10px; padding: 9px 11px; color: #397969; border: 1px solid #cdebdc; border-radius: 10px; background: #eaf8f1; font-size: 10px; line-height: 1.45; animation: rise-in .25s ease both; }
-.student-current-topic svg { flex: 0 0 auto; }
-.student-current-topic strong { color: #246a5b; }
-
 .word-cloud__word--freedom { left: 76%; top: 37%; width: 68px; height: 68px; color: #246459; background: #ceead8; }
 .word-cloud__word--ltv { left: 24%; top: 72%; width: 64px; height: 64px; color: #8a5b39; background: #f7e0c7; }
 .word-cloud--student .word-cloud__word--freedom { left: 76%; top: 35%; width: 46px; height: 46px; }
