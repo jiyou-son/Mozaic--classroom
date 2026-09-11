@@ -88,13 +88,12 @@ export function StudentPage() {
         <section className="student-phone" aria-label="QSignal 학생 참여 화면">
           <div className="student-phone__island"><span /></div>
           <header className="student-phone__header">
-            <div><span className="student-phone__brand">QSignal</span><p>공학수학 2</p></div>
+            <div><span className="student-phone__brand">QSignal</span><p>서울대학교</p></div>
             <span className="student-live-pill"><i className="status-dot" /> LIVE</span>
           </header>
           <div className="student-phone__course">
-            <span>오늘 수업</span>
-            <strong>라그랑지안과 일반화좌표</strong>
-            <small>익명 참여 중 · MATH2401</small>
+            <strong>자료구조의 기초</strong>
+            <small>한보형 교수</small>
           </div>
 
           <section className="student-submit">

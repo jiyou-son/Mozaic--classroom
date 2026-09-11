@@ -1,3 +1,5 @@
+.student-phone__course strong { margin-top: 0; }
+
 .word-cloud__word--freedom { left: 76%; top: 37%; width: 68px; height: 68px; color: #246459; background: #ceead8; }
 .word-cloud__word--ltv { left: 24%; top: 72%; width: 64px; height: 64px; color: #8a5b39; background: #f7e0c7; }
 .word-cloud--student .word-cloud__word--freedom { left: 76%; top: 35%; width: 46px; height: 46px; }
