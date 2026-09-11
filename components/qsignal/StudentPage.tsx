@@ -133,7 +133,7 @@ export function StudentPage() {
                   <label className="sr-only" htmlFor="student-signal">질문 또는 키워드 입력</label>
                   <textarea aria-invalid={inputError} id="student-signal" onChange={(event) => { setInput(event.target.value); setInputError(false); }} placeholder={placeholder} value={input} rows={mode === 'keyword' ? 2 : 3} />
                   {inputError && <p className="student-input-error" role="alert">한 단어나 질문을 먼저 적어주세요.</p>}
-                  <button className="student-submit__button" type="submit">익명으로 올리기 <Send size={15} /></button>
+                  <button className="student-submit__button" type="submit">{mode === 'keyword' ? '키워드 남기기' : '질문 남기기'} <Send size={15} /></button>
                 </form>
               </section>
 
