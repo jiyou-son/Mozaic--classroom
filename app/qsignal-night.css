@@ -80,11 +80,12 @@ body {
   stroke-width: 1.1;
 }
 
-.mosaic-mark__tile--indigo { fill: #5c6399; }
-.mosaic-mark__tile--lavender { fill: #b7a9ee; }
-.mosaic-mark__tile--blue { fill: #8eb4ff; }
+.mosaic-mark__tile--indigo { fill: #454d7c; }
+.mosaic-mark__tile--lavender { fill: #d5ccff; }
+.mosaic-mark__tile--blue { fill: #6179ad; }
 .mosaic-mark__tile--lime { fill: var(--night-lime); }
 .mosaic-mark__tile--coral { fill: var(--night-coral); }
+.mosaic-mark__tile--question { stroke: #fbfaff; stroke-width: .58; }
 
 .brand-copy strong {
   color: var(--night-text);
