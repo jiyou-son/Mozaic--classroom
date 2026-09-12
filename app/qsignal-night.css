@@ -74,19 +74,13 @@ body {
   filter: drop-shadow(0 5px 11px rgba(0, 0, 0, .3));
 }
 
-.mosaic-mark__bubble {
-  fill: #111737;
-  stroke: rgba(199, 188, 255, .52);
-  stroke-width: 1.1;
-}
-
 .mosaic-mark__tile--indigo { fill: #7884c8; }
 .mosaic-mark__tile--lavender { fill: #e1d9ff; }
 .mosaic-mark__tile--blue { fill: #8b9ae1; }
 .mosaic-mark__tile--violet { fill: #9a90d6; }
 .mosaic-mark__tile--lime { fill: var(--night-lime); }
 .mosaic-mark__tile--coral { fill: var(--night-coral); }
-.mosaic-mark__tile--question { stroke: #fbfaff; stroke-width: .58; }
+.mosaic-mark__question { mix-blend-mode: screen; opacity: .84; pointer-events: none; }
 
 .brand-copy strong {
   color: var(--night-text);
