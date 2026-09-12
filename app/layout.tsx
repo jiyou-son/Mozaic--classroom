@@ -3,6 +3,7 @@ import './globals.css';
 import './qsignal.css';
 import './qsignal-overrides.css';
 import './button-fix.css';
+import './qsignal-night.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://qsignal-classroom.sonjiyou1905.chatgpt.site'),
