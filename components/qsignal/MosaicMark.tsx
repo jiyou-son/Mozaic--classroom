@@ -38,13 +38,21 @@ export function MosaicMark() {
           y={tile.y}
         />
       ))}
-      <path
+      <g
         className="mosaic-mark__question"
         clipPath="url(#mosaic-mark-grid-clip)"
-        d="M17.5 17.25c0-4.7 3.15-7.65 7.8-7.65 4.45 0 7.55 2.78 7.55 6.93 0 3.37-1.48 5.19-4.35 7.18-2.26 1.57-3.19 2.89-3.19 5.33v1.62h-4.3v-2.15c0-3.25 1.22-5.22 3.87-7.04 2.45-1.66 3.62-2.86 3.62-4.79 0-1.94-1.4-3.26-3.43-3.26-2.47 0-3.72 1.76-3.72 4.42v.53h-4.3Zm3.55 19.45c0-1.85 1.43-3.28 3.37-3.28 1.95 0 3.39 1.43 3.39 3.28 0 1.84-1.44 3.26-3.39 3.26-1.94 0-3.37-1.42-3.37-3.26Z"
-        fill="url(#mosaic-mark-question-fill)"
         filter="url(#mosaic-mark-question-glow)"
-      />
+      >
+        <path
+          d="M16.7 17.2C16.7 12.1 20.1 9.4 24.7 9.4c4.9 0 8.5 2.8 8.5 7.2 0 3.4-1.9 5.2-4.6 7.1-3.1 2.1-4.5 4.1-4.5 7.4"
+          fill="none"
+          stroke="url(#mosaic-mark-question-fill)"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="5.5"
+        />
+        <circle cx="24.1" cy="37.1" fill="url(#mosaic-mark-question-fill)" r="3.15" />
+      </g>
     </svg>
   );
 }
