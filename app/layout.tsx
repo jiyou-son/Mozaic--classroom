@@ -7,21 +7,25 @@ import './qsignal-night.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://qsignal-classroom.sonjiyou1905.chatgpt.site'),
-  title: 'QSignal — 혼자 묻던 질문을 수업의 신호로',
+  title: '모자이크 — 흩어진 질문이 하나의 수업으로',
   description:
-    '학생들의 날것의 헷갈림을 실시간 질문 시그널로 바꾸는 강의실 커뮤니케이션 프로토타입',
+    '학생들의 작은 질문 조각을 모아, 함께 볼 수 있는 수업의 그림으로 만드는 강의실 소통 프로토타입',
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+  },
   openGraph: {
-    title: 'QSignal — 혼자 묻던 질문을 수업의 신호로',
-    description: 'LLM에게 흩어지는 질문을 다시 수업 안으로.',
-    siteName: 'QSignal',
+    title: '모자이크 — 흩어진 질문이 하나의 수업으로',
+    description: '학생들의 작은 질문 조각을 함께 볼 수 있는 수업의 그림으로.',
+    siteName: '모자이크',
     type: 'website',
     url: '/',
-    images: [{ url: '/og.png', width: 1672, height: 941, alt: 'QSignal — 혼자 묻던 질문을 수업의 신호로.' }],
+    images: [{ url: '/og.png', width: 1734, height: 907, alt: '모자이크 — 흩어진 질문이 하나의 수업으로.' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'QSignal — 혼자 묻던 질문을 수업의 신호로',
-    description: 'LLM에게 흩어지는 질문을 다시 수업 안으로.',
+    title: '모자이크 — 흩어진 질문이 하나의 수업으로',
+    description: '학생들의 작은 질문 조각을 함께 볼 수 있는 수업의 그림으로.',
     images: ['/og.png'],
   },
 };

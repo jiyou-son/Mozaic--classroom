@@ -1,3 +1,5 @@
+import { MosaicMark } from './MosaicMark';
+
 type BrandProps = {
   inverse?: boolean;
   compact?: boolean;
@@ -6,18 +8,17 @@ type BrandProps = {
 export function Brand({ inverse = false, compact = false }: BrandProps) {
   return (
     <a
-      aria-label="QSignal 홈"
+      aria-label="모자이크 홈"
       className={`brand ${inverse ? 'brand--inverse' : ''}`}
       href="/"
     >
       <span className="brand-mark" aria-hidden="true">
-        <span className="brand-mark__ring" />
-        <span className="brand-mark__pulse" />
+        <MosaicMark />
       </span>
       {!compact && (
         <span className="brand-copy">
-          <strong>QSignal</strong>
-          <small>혼자 묻던 질문을 수업의 신호로.</small>
+          <strong>모자이크</strong>
+          <small>흩어진 질문을 함께 읽는 강의실.</small>
         </span>
       )}
     </a>

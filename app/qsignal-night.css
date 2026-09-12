@@ -50,14 +50,49 @@ body {
   color: var(--night-muted);
 }
 
-.brand-mark {
-  border: 1px solid rgba(201, 255, 61, .32);
-  background: linear-gradient(145deg, #303b79, #151a3e);
-  box-shadow: 0 0 0 4px rgba(201, 255, 61, .06), inset 0 0 0 1px rgba(255, 255, 255, .08);
+.brand {
+  gap: 11px;
+  min-width: 172px;
 }
 
-.brand-mark__ring { border-color: var(--night-lavender); }
-.brand-mark__pulse { background: var(--night-lime); }
+.brand-mark {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.mosaic-mark {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+  filter: drop-shadow(0 5px 11px rgba(0, 0, 0, .3));
+}
+
+.mosaic-mark__bubble {
+  fill: #111737;
+  stroke: rgba(199, 188, 255, .52);
+  stroke-width: 1.1;
+}
+
+.mosaic-mark__tile--indigo { fill: #5c6399; }
+.mosaic-mark__tile--lavender { fill: #b7a9ee; }
+.mosaic-mark__tile--blue { fill: #8eb4ff; }
+.mosaic-mark__tile--lime { fill: var(--night-lime); }
+.mosaic-mark__tile--coral { fill: var(--night-coral); }
+
+.brand-copy strong {
+  color: var(--night-text);
+  font-size: 18px;
+  letter-spacing: -.085em;
+}
+
+.brand-copy small { color: var(--night-muted); }
 
 .header-cta,
 .button--primary,

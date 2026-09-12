@@ -38,7 +38,7 @@ export function LandingPage() {
             <div className="hero-copy">
               <h1>LLM에게 흩어지는 질문을<br /><em>다시 수업 안으로</em></h1>
               <p>
-                QSignal은 학생들의 날것의 헷갈림을 실시간 질문 시그널로 바꾸어<br className="desktop-only" />
+                모자이크는 학생들의 날것의 헷갈림을 실시간 질문 시그널로 바꾸어<br className="desktop-only" />
                 교수자가 수업 중 바로 파악할 수 있도록 돕습니다.
               </p>
               <div className="hero-actions">
@@ -132,7 +132,7 @@ export function LandingPage() {
           <span className="landing-cta__ornament" aria-hidden="true"><Check size={50} /></span>
         </section>
       </main>
-      <footer className="site-footer"><span>QSignal · classroom communication for the LLM era</span><span>AI는 교수자와 학생 사이의 대화를 대신하지 않습니다.</span></footer>
+      <footer className="site-footer"><span>모자이크 · 흩어진 질문이 하나의 수업으로</span><span>AI는 교수자와 학생 사이의 대화를 대신하지 않습니다.</span></footer>
     </AppShell>
   );
 }
