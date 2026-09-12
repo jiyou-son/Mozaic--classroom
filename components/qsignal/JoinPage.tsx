@@ -57,7 +57,6 @@ export function JoinPage() {
     <AppShell active="student">
       <main className="join-page">
         <div className="join-page__intro">
-          <span className="section-kicker">STUDENT ACCESS</span>
           <h1>어디서든, <em>같은 수업</em>에 참여하세요.</h1>
           <p>휴대폰은 QR로 빠르게, 카메라가 없거나 노트북·태블릿을 쓰는 경우에는 입장 코드로 바로 참여할 수 있어요.</p>
           <div className="join-page__device-list" aria-label="지원 기기">
@@ -77,7 +76,6 @@ export function JoinPage() {
             <article className="join-method join-method--qr">
               <span className="join-method__icon"><QrCode size={21} /></span>
               <div>
-                <span className="join-method__eyebrow">PHONE FIRST</span>
                 <h3>휴대폰은 QR로 입장</h3>
                 <p>교수자 화면의 QR을 휴대폰 기본 카메라로 스캔하면, 이 수업의 참여 화면이 바로 열려요.</p>
               </div>
@@ -88,7 +86,6 @@ export function JoinPage() {
             <form className="join-code-form" onSubmit={submitEntry}>
               <span className="join-method__icon join-method__icon--code"><KeyRound size={20} /></span>
               <div className="join-code-form__copy">
-                <span className="join-method__eyebrow">CODE ACCESS</span>
                 <h3>입장 코드로 참여</h3>
                 <p id="entry-code-help">카메라를 사용할 수 없는 기기에서는 교수자가 안내한 코드를 입력해 주세요.</p>
               </div>

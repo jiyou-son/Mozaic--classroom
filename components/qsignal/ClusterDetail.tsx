@@ -17,7 +17,6 @@ export function ClusterDetail({ cluster, reactions = 18, onReact, onClose, modal
     <section className={`cluster-detail ${modal ? 'cluster-detail--modal' : ''}`} aria-label={`${cluster.label} 상세`}>
       <div className="cluster-detail__head">
         <div>
-          <span className="section-kicker">QUESTION CLUSTER</span>
           {modal ? <DialogTitle>{cluster.cloudLabel} 관련 헷갈림</DialogTitle> : <h2>{cluster.cloudLabel} 관련 헷갈림</h2>}
         </div>
         {onClose && <button className="icon-button" onClick={onClose} type="button" aria-label="상세 닫기"><X size={19} /></button>}

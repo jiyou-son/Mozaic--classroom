@@ -36,7 +36,6 @@ export function LandingPage() {
           <div className="landing-hero__glow landing-hero__glow--two" />
           <div className="landing-hero__inner">
             <div className="hero-copy">
-              <div className="eyebrow"><span className="eyebrow__dot" /> LIVE CLASSROOM SIGNAL</div>
               <h1>LLM에게 흩어지는 질문을<br /><em>다시 수업 안으로</em></h1>
               <p>
                 QSignal은 학생들의 날것의 헷갈림을 실시간 질문 시그널로 바꾸어<br className="desktop-only" />
@@ -61,7 +60,7 @@ export function LandingPage() {
             <div className="signal-preview" aria-label={`${classSession.name}의 실시간 질문 시그널 미리보기`}>
               <div className="signal-preview__chrome">
                 <span className="status-dot" />
-                <span>LIVE SIGNAL</span>
+                <span>실시간 신호</span>
                 <span className="signal-preview__room">{classSession.university}</span>
               </div>
               <div className="signal-preview__head">
@@ -97,13 +96,13 @@ export function LandingPage() {
 
         <section className="demo-section">
           <div className="demo-section__heading">
-            <div><span className="section-kicker">TODAY&apos;S DEMO CLASS</span><h2>수업의 빈틈을,<br />실시간으로 채워보세요.</h2></div>
+            <div><h2>수업의 빈틈을,<br />실시간으로 채워보세요.</h2></div>
             <a className="text-link" href="/screens">전체 화면 살펴보기 <ArrowRight size={16} /></a>
           </div>
           <div className="demo-class-card">
             <div className="demo-class-card__main">
               <div className="course-chip"><span>09</span><small>SEP<br />2026</small></div>
-              <div><span className="micro-label">DEMO SESSION</span><h3>{classSession.name}</h3><p>{classSession.instructor} <span>· {classSession.date}</span></p></div>
+              <div><h3>{classSession.name}</h3><p>{classSession.instructor} <span>· {classSession.date}</span></p></div>
             </div>
             <div className="demo-class-card__stats">
               <span>입장 코드 <strong>{classSession.accessCode}</strong></span>
@@ -114,7 +113,7 @@ export function LandingPage() {
         </section>
 
         <section className="features-section">
-          <div className="features-section__title"><span className="section-kicker">HOW QSIGNAL WORKS</span><h2>작은 질문이<br />수업의 다음 장면을 만듭니다.</h2></div>
+          <div className="features-section__title"><h2>작은 질문이<br />수업의 다음 장면을 만듭니다.</h2></div>
           <div className="feature-grid">
             {featureItems.map((feature, index) => {
               const Icon = feature.icon;
@@ -128,7 +127,7 @@ export function LandingPage() {
         </section>
 
         <section className="landing-cta">
-          <div><span className="section-kicker">BETTER TOGETHER</span><h2>질문이 사라지지 않는<br />강의실을 시작하세요.</h2></div>
+          <div><h2>질문이 사라지지 않는<br />강의실을 시작하세요.</h2></div>
           <a className="button button--light" href="/teacher">대시보드 미리보기 <ArrowRight size={17} /></a>
           <span className="landing-cta__ornament" aria-hidden="true"><Check size={50} /></span>
         </section>

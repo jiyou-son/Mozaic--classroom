@@ -120,7 +120,7 @@ export function StudentPage() {
   if (!accessReady) {
     return (
       <AppShell active="student">
-        <main aria-live="polite" className="student-access-loading"><span className="section-kicker">STUDENT ACCESS</span><p>수업 입장을 확인하고 있어요.</p></main>
+        <main aria-live="polite" className="student-access-loading"><p>수업 입장을 확인하고 있어요.</p></main>
       </AppShell>
     );
   }
@@ -135,7 +135,6 @@ export function StudentPage() {
           <button aria-pressed={activeDevice === 'laptop'} className={activeDevice === 'laptop' ? 'is-active' : ''} onClick={() => selectDevicePreview('laptop')} type="button"><Laptop size={15} /> 노트북</button>
         </div>
         <div className="student-page__intro">
-          <span className="section-kicker">STUDENT VIEW</span>
           <h1>궁금한 걸, <em>그대로</em> 남겨요.</h1>
           <p>정리하지 않아도 괜찮아요. 익명으로 남긴 작은 막힘이<br />교수자에게 지금 필요한 설명을 알려줍니다.</p>
           <div className="student-page__legend"><span><i className="status-dot" /> 익명 참여 중</span><span><Sparkles size={13} /> AI는 유사한 질문만 묶어요</span></div>
@@ -146,7 +145,7 @@ export function StudentPage() {
           <div aria-hidden="true" className="student-device__windowbar"><span className="student-device__window-dots"><i /><i /><i /></span><span className="student-device__window-title">QSignal · {classSession.name}</span><span className="student-device__window-state">학생 참여</span></div>
           <header className="student-phone__header">
             <div><span className="student-phone__brand">QSignal</span><p>{classSession.university}</p></div>
-            <span className="student-live-pill"><i className="status-dot" /> LIVE</span>
+            <span className="student-live-pill"><i className="status-dot" /> 수업 진행 중</span>
           </header>
           <div className="student-phone__course">
             <strong>{classSession.name}</strong>
@@ -174,13 +173,13 @@ export function StudentPage() {
               {submitted.length > 0 && <section className="new-signals"><div><span>방금 올라온 신호</span><small>전체 질문 공감 {activeQuestionCount}회</small></div><div className="new-signals__chips">{submitted.map((signal) => <span key={signal.id}>{signal.text}</span>)}</div></section>}
             </div>
             <section className="student-cloud-section">
-              <div className="student-section-head"><div><span className="section-kicker">LIVE QUESTION CLOUD</span><h2>또 무엇이 궁금한가요?</h2></div><Waves size={19} /></div>
+              <div className="student-section-head"><div><h2>또 무엇이 궁금한가요?</h2></div><Waves size={19} /></div>
               <WordCloud clusters={cloudClusters} onSelect={setSelectedClusterId} variant="student" />
               <button className="signal-tip" onClick={() => setSelectedClusterId('lagrangian')} type="button"><Sparkles size={14} /> 단어를 누르면 비슷한 원문 질문을 볼 수 있어요 <ChevronRight size={14} /></button>
             </section>
 
             <section className="student-questions">
-              <div className="student-section-head"><div><span className="section-kicker">MOST RESONATED</span><h2>많이 공감한 질문</h2></div><span className="student-questions__total">{questions.length}개</span></div>
+              <div className="student-section-head"><div><h2>많이 공감한 질문</h2></div><span className="student-questions__total">{questions.length}개</span></div>
               <div className="student-questions__list">
                 {questions.map((question, index) => <QuestionCard accent={index % 2 === 0 ? 'teal' : 'blue'} count={question.count} key={question.id} onReact={() => incrementQuestion(question.id)} text={question.text} />)}
               </div>

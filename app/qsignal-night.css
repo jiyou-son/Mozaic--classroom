@@ -822,3 +822,33 @@ textarea:focus-visible {
 @media (max-width: 660px) {
   .student-page .student-device-switcher { background: rgba(21, 27, 59, .97); }
 }
+
+/* Titles now lead without decorative English eyebrows. */
+.hero-copy h1,
+.demo-section h2,
+.features-section h2,
+.landing-cta h2,
+.demo-class-card h3,
+.join-page__intro h1,
+.join-method h3,
+.join-code-form h3,
+.student-page__intro h1,
+.student-section-head h2,
+.teacher-topbar h1,
+.teacher-access__copy h2,
+.teacher-panel__head h2,
+.selected-panel__head h2,
+.report-hero h1,
+.report-card h2,
+.report-next h2,
+.gallery-page__head h1,
+.gallery-card h2,
+.cluster-detail h2,
+.cluster-detail__head [data-slot="dialog-title"],
+.mini-report__hero h4 {
+  margin-top: 0;
+}
+
+.ai-summary p { margin-top: 0; }
+.mini-detail__bar { justify-content: flex-end; }
+.gallery-card__meta { justify-content: flex-end; min-height: 17px; }
