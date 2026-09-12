@@ -20,7 +20,6 @@ Open the local URL printed in the terminal (normally `http://localhost:3000`). T
 | `/` | QSignal landing page and role selection |
 | `/join` | QR-linked and entry-code student access |
 | `/student` | Mobile-style anonymous student submission experience |
-| `/teacher` | Desktop instructor live stuck map and question clustering dashboard |
 | `/report` | Generated-looking after-class question report |
 | `/screens` | Presentation-friendly gallery of five key product scenes |
 

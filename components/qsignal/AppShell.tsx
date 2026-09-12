@@ -4,13 +4,12 @@ import { Brand } from './Brand';
 
 type AppShellProps = {
   children: ReactNode;
-  active?: 'home' | 'student' | 'teacher' | 'report' | 'screens';
+  active?: 'home' | 'student' | 'report' | 'screens';
   minimal?: boolean;
 };
 
 const navItems = [
   { href: '/join', label: '학생 화면', key: 'student' },
-  { href: '/teacher', label: '교수자 대시보드', key: 'teacher' },
   { href: '/report', label: '수업 후 리포트', key: 'report' },
 ] as const;
 

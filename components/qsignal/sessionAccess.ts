@@ -23,10 +23,6 @@ export function isValidEntryCode(value: string) {
   return normalizeEntryCode(value) === normalizeEntryCode(classSession.accessCode);
 }
 
-export function getQrJoinPath() {
-  return `/join?code=${encodeURIComponent(classSession.accessCode)}`;
-}
-
 export function getSafeStudentPath(value: string | null) {
   return value?.startsWith('/student') ? value : '/student';
 }

@@ -1,4 +1,4 @@
-import { ArrowRight, BookOpenCheck, CheckCircle2, FileText, Lightbulb, MessageCircleQuestion, Sparkles, TrendingUp } from 'lucide-react';
+import { BookOpenCheck, CheckCircle2, FileText, Lightbulb, MessageCircleQuestion, Sparkles, TrendingUp } from 'lucide-react';
 import { AppShell } from './AppShell';
 import { classSession, clusters, reportRankings } from './mockData';
 
@@ -23,7 +23,7 @@ export function ReportPage() {
 
           <article className="report-card report-patterns"><div className="report-card__head"><div><h2>반복적으로 등장한<br />질문 유형</h2></div><MessageCircleQuestion size={21} /></div><div className="report-patterns__list">{repeatedTypes.map((item) => <div key={item.number}><b>{item.number}</b><p>{item.text}<small>{item.note}</small></p></div>)}</div></article>
 
-          <article className="report-card report-leftover"><div className="report-card__head"><div><h2>설명 후에도 남은 질문</h2></div><span className="report-leftover__count">8개</span></div><div className="report-leftover__items"><p><span>01</span> “일반화좌표랑 라그랑지안 연결이 안 됨”</p><p><span>02</span> “제약식이 있으면 좌표 수가 왜 줄어드나요?”</p><p><span>03</span> “마찰이 있으면 에너지 보존은 바로 못 쓰는 거죠?”</p></div><div className="report-leftover__footer"><span><i className="status-dot" /> 다음 수업에서 우선 보완 추천</span><a href="/teacher">대시보드 보기 <ArrowRight size={14} /></a></div></article>
+          <article className="report-card report-leftover"><div className="report-card__head"><div><h2>설명 후에도 남은 질문</h2></div><span className="report-leftover__count">8개</span></div><div className="report-leftover__items"><p><span>01</span> “일반화좌표랑 라그랑지안 연결이 안 됨”</p><p><span>02</span> “제약식이 있으면 좌표 수가 왜 줄어드나요?”</p><p><span>03</span> “마찰이 있으면 에너지 보존은 바로 못 쓰는 거죠?”</p></div><div className="report-leftover__footer"><span><i className="status-dot" /> 다음 수업에서 우선 보완 추천</span></div></article>
 
           <article className="report-next"><div><h2>다음 수업에서<br /><em>보완하면 좋은 내용</em></h2><p>계산보다 먼저, 학생들이 ‘왜 이 방법을 쓰는지’를 납득할 수 있는 연결을 만들어 주세요.</p></div><ol><li><span>01</span><p>뉴턴 방식과 라그랑지안 방식의 비교를 <strong>5분 정도 다시 설명</strong></p></li><li><span>02</span><p>일반화좌표를 선택하는 기준을 <strong>예제와 함께 설명</strong></p></li><li><span>03</span><p><strong>L=T-V를 세우는 과정</strong>을 한 줄씩 보여주기</p></li></ol><span className="report-next__mark"><Lightbulb size={46} /></span></article>
 

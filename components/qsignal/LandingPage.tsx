@@ -15,7 +15,7 @@ const featureItems = [
   { icon: MessageCircleMore, title: '익명 키워드 제출', description: '한 단어의 막힘도 수업 안으로' },
   { icon: Cloud, title: '실시간 질문 클라우드', description: '흩어진 질문을 한눈에' },
   { icon: UsersRound, title: '나도 궁금해요', description: '말하지 못한 공감을 신호로' },
-  { icon: BarChart3, title: '교수자용 혼란도 지도', description: '지금 다뤄야 할 주제를 발견' },
+  { icon: BarChart3, title: '질문 흐름 지도', description: '흩어진 질문의 흐름을 발견' },
   { icon: Sparkles, title: '수업 후 리포트', description: '다음 설명을 위한 맥락까지' },
 ];
 
@@ -44,9 +44,6 @@ export function LandingPage() {
               <div className="hero-actions">
                 <a className="button button--primary" href="/join">
                   학생으로 참여하기 <ArrowRight size={17} />
-                </a>
-                <a className="button button--ghost" href="/teacher">
-                  교수자 대시보드 보기
                 </a>
               </div>
               <div className="hero-trust">
@@ -128,7 +125,7 @@ export function LandingPage() {
 
         <section className="landing-cta">
           <div><h2>질문이 사라지지 않는<br />강의실을 시작하세요.</h2></div>
-          <a className="button button--light" href="/teacher">대시보드 미리보기 <ArrowRight size={17} /></a>
+          <a className="button button--light" href="/join">학생 화면 미리보기 <ArrowRight size={17} /></a>
           <span className="landing-cta__ornament" aria-hidden="true"><Check size={50} /></span>
         </section>
       </main>
