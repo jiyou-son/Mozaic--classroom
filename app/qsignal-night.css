@@ -1013,3 +1013,45 @@ textarea:focus-visible {
   color: #514579;
   background: #f0edff;
 }
+
+/* Keep the presentation stage light so every device reads as an interface. */
+.student-page {
+  background:
+    radial-gradient(circle at 12% 20%, rgba(199, 188, 255, .30), transparent 25%),
+    radial-gradient(circle at 88% 75%, rgba(201, 255, 61, .12), transparent 24%),
+    #f7f5ff;
+}
+
+.student-page__intro h1,
+.student-page__intro h1 em {
+  color: #151735;
+}
+
+.student-page__intro > p { color: #5e6280; }
+
+.student-page .student-page__legend span {
+  color: #514579;
+  border-color: #ded9ee;
+  background: rgba(255, 255, 255, .86);
+}
+
+.student-page .student-device-switcher {
+  color: #646a8b;
+  border-color: #ded9ee;
+  background: rgba(255, 255, 255, .94);
+  box-shadow: 0 12px 28px rgba(38, 31, 83, .10);
+}
+
+.student-page .student-device-switcher__label,
+.student-page .student-device-switcher button { color: #595f83; }
+
+.student-page .student-device-switcher button:hover {
+  color: #29204f;
+  background: #f0edff;
+}
+
+.student-page .student-device-switcher button.is-active {
+  color: #20183f;
+  background: var(--night-lavender);
+  box-shadow: 0 4px 10px rgba(72, 57, 137, .20);
+}
