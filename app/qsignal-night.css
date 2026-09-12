@@ -79,8 +79,6 @@ body {
 .mosaic-mark__tile--blue { fill: #8b9ae1; }
 .mosaic-mark__tile--violet { fill: #9a90d6; }
 .mosaic-mark__tile--lime { fill: var(--night-lime); }
-.mosaic-mark__tile--coral { fill: var(--night-coral); }
-.mosaic-mark__exclamation { mix-blend-mode: screen; opacity: .84; pointer-events: none; }
 
 .brand-copy strong {
   color: var(--night-text);

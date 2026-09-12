@@ -1,29 +1,14 @@
 <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <clipPath id="grid-clip">
-      <rect x="7" y="7" width="7" height="7" rx="2.15"/><rect x="16" y="7" width="7" height="7" rx="2.15"/><rect x="25" y="7" width="7" height="7" rx="2.15"/><rect x="34" y="7" width="7" height="7" rx="2.15"/>
-      <rect x="7" y="16" width="7" height="7" rx="2.15"/><rect x="16" y="16" width="7" height="7" rx="2.15"/><rect x="25" y="16" width="7" height="7" rx="2.15"/><rect x="34" y="16" width="7" height="7" rx="2.15"/>
-      <rect x="7" y="25" width="7" height="7" rx="2.15"/><rect x="16" y="25" width="7" height="7" rx="2.15"/><rect x="25" y="25" width="7" height="7" rx="2.15"/><rect x="34" y="25" width="7" height="7" rx="2.15"/>
-      <rect x="7" y="34" width="7" height="7" rx="2.15"/><rect x="16" y="34" width="7" height="7" rx="2.15"/><rect x="25" y="34" width="7" height="7" rx="2.15"/><rect x="34" y="34" width="7" height="7" rx="2.15"/>
-    </clipPath>
-    <linearGradient id="exclamation-fill" x1="15" x2="31" y1="9" y2="40">
-      <stop stop-color="#F8F5FF" stop-opacity=".86"/><stop offset=".58" stop-color="#D9D0FF" stop-opacity=".68"/><stop offset="1" stop-color="#BBB0F2" stop-opacity=".56"/>
-    </linearGradient>
     <filter id="glow" x="-45%" y="-45%" width="190%" height="190%">
       <feGaussianBlur stdDeviation="1.35" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
-    <filter id="exclamation-glow" x="-30%" y="-30%" width="160%" height="160%">
-      <feGaussianBlur stdDeviation=".7" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
   </defs>
   <g>
-    <rect x="7" y="7" width="7" height="7" rx="2.15" fill="#8B9AE1"/><rect x="16" y="7" width="7" height="7" rx="2.15" fill="#C9FF3D" filter="url(#glow)"/><rect x="25" y="7" width="7" height="7" rx="2.15" fill="#8B9AE1"/><rect x="34" y="7" width="7" height="7" rx="2.15" fill="#9A90D6"/>
-    <rect x="7" y="16" width="7" height="7" rx="2.15" fill="#7884C8"/><rect x="16" y="16" width="7" height="7" rx="2.15" fill="#E1D9FF"/><rect x="25" y="16" width="7" height="7" rx="2.15" fill="#E1D9FF"/><rect x="34" y="16" width="7" height="7" rx="2.15" fill="#9A90D6"/>
-    <rect x="7" y="25" width="7" height="7" rx="2.15" fill="#8B9AE1"/><rect x="16" y="25" width="7" height="7" rx="2.15" fill="#E1D9FF"/><rect x="25" y="25" width="7" height="7" rx="2.15" fill="#7884C8"/><rect x="34" y="25" width="7" height="7" rx="2.15" fill="#FFAD8F" filter="url(#glow)"/>
-    <rect x="7" y="34" width="7" height="7" rx="2.15" fill="#E1D9FF"/><rect x="16" y="34" width="7" height="7" rx="2.15" fill="#8B9AE1"/><rect x="25" y="34" width="7" height="7" rx="2.15" fill="#9A90D6"/><rect x="34" y="34" width="7" height="7" rx="2.15" fill="#8B9AE1"/>
-  </g>
-  <g clip-path="url(#grid-clip)" filter="url(#exclamation-glow)">
-    <rect x="19.6" y="7.3" width="8.8" height="24" rx="4.4" fill="url(#exclamation-fill)"/>
-    <circle cx="24" cy="37.2" r="3.9" fill="url(#exclamation-fill)"/>
+    <rect x="5.5" y="5.5" width="6.4" height="6.4" rx="2.3" fill="#8B9AE1"/><rect x="13.4" y="5.5" width="6.4" height="6.4" rx="2.3" fill="#7884C8"/><rect x="21.3" y="5.5" width="6.4" height="6.4" rx="2.3" fill="#C9FF3D" filter="url(#glow)"/><rect x="29.2" y="5.5" width="6.4" height="6.4" rx="2.3" fill="#8B9AE1"/><rect x="37.1" y="5.5" width="6.4" height="6.4" rx="2.3" fill="#9A90D6"/>
+    <rect x="5.5" y="13.4" width="6.4" height="6.4" rx="2.3" fill="#9A90D6"/><rect x="13.4" y="13.4" width="6.4" height="6.4" rx="2.3" fill="#8B9AE1"/><rect x="21.3" y="13.4" width="6.4" height="6.4" rx="2.3" fill="#C9FF3D" filter="url(#glow)"/><rect x="29.2" y="13.4" width="6.4" height="6.4" rx="2.3" fill="#E1D9FF"/><rect x="37.1" y="13.4" width="6.4" height="6.4" rx="2.3" fill="#7884C8"/>
+    <rect x="5.5" y="21.3" width="6.4" height="6.4" rx="2.3" fill="#7884C8"/><rect x="13.4" y="21.3" width="6.4" height="6.4" rx="2.3" fill="#E1D9FF"/><rect x="21.3" y="21.3" width="6.4" height="6.4" rx="2.3" fill="#C9FF3D" filter="url(#glow)"/><rect x="29.2" y="21.3" width="6.4" height="6.4" rx="2.3" fill="#8B9AE1"/><rect x="37.1" y="21.3" width="6.4" height="6.4" rx="2.3" fill="#9A90D6"/>
+    <rect x="5.5" y="29.2" width="6.4" height="6.4" rx="2.3" fill="#8B9AE1"/><rect x="13.4" y="29.2" width="6.4" height="6.4" rx="2.3" fill="#7884C8"/><rect x="21.3" y="29.2" width="6.4" height="6.4" rx="2.3" fill="#8B9AE1"/><rect x="29.2" y="29.2" width="6.4" height="6.4" rx="2.3" fill="#E1D9FF"/><rect x="37.1" y="29.2" width="6.4" height="6.4" rx="2.3" fill="#7884C8"/>
+    <rect x="5.5" y="37.1" width="6.4" height="6.4" rx="2.3" fill="#E1D9FF"/><rect x="13.4" y="37.1" width="6.4" height="6.4" rx="2.3" fill="#8B9AE1"/><rect x="21.3" y="37.1" width="6.4" height="6.4" rx="2.3" fill="#C9FF3D" filter="url(#glow)"/><rect x="29.2" y="37.1" width="6.4" height="6.4" rx="2.3" fill="#9A90D6"/><rect x="37.1" y="37.1" width="6.4" height="6.4" rx="2.3" fill="#8B9AE1"/>
   </g>
 </svg>

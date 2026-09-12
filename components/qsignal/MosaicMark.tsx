@@ -1,28 +1,25 @@
-const tiles = [
-  { x: 7, y: 7, tone: 'blue' }, { x: 16, y: 7, tone: 'lime', glow: true }, { x: 25, y: 7, tone: 'blue' }, { x: 34, y: 7, tone: 'violet' },
-  { x: 7, y: 16, tone: 'indigo' }, { x: 16, y: 16, tone: 'lavender' }, { x: 25, y: 16, tone: 'lavender' }, { x: 34, y: 16, tone: 'violet' },
-  { x: 7, y: 25, tone: 'blue' }, { x: 16, y: 25, tone: 'lavender' }, { x: 25, y: 25, tone: 'indigo' }, { x: 34, y: 25, tone: 'coral', glow: true },
-  { x: 7, y: 34, tone: 'lavender' }, { x: 16, y: 34, tone: 'blue' }, { x: 25, y: 34, tone: 'violet' }, { x: 34, y: 34, tone: 'blue' },
-];
+const tilePositions = [5.5, 13.4, 21.3, 29.2, 37.1];
+const tileTones = [
+  ['blue', 'indigo', 'lime', 'blue', 'violet'],
+  ['violet', 'blue', 'lime', 'lavender', 'indigo'],
+  ['indigo', 'lavender', 'lime', 'blue', 'violet'],
+  ['blue', 'indigo', 'blue', 'lavender', 'indigo'],
+  ['lavender', 'blue', 'lime', 'violet', 'blue'],
+] as const;
+
+const tiles = tileTones.flatMap((row, rowIndex) => row.map((tone, columnIndex) => ({
+  x: tilePositions[columnIndex],
+  y: tilePositions[rowIndex],
+  tone,
+  glow: tone === 'lime',
+})));
 
 export function MosaicMark() {
   return (
     <svg aria-hidden="true" className="mosaic-mark" focusable="false" viewBox="0 0 48 48">
       <defs>
-        <clipPath id="mosaic-mark-grid-clip">
-          {tiles.map((tile) => <rect height="7" key={`clip-${tile.x}-${tile.y}`} rx="2.15" width="7" x={tile.x} y={tile.y} />)}
-        </clipPath>
-        <linearGradient id="mosaic-mark-exclamation-fill" x1="15" x2="31" y1="9" y2="40">
-          <stop stopColor="#f8f5ff" stopOpacity=".74" />
-          <stop offset=".58" stopColor="#d9d0ff" stopOpacity=".54" />
-          <stop offset="1" stopColor="#bbb0f2" stopOpacity=".42" />
-        </linearGradient>
         <filter height="190%" id="mosaic-mark-glow" width="190%" x="-45%" y="-45%">
           <feGaussianBlur result="blur" stdDeviation="1.35" />
-          <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
-        </filter>
-        <filter height="160%" id="mosaic-mark-exclamation-glow" width="160%" x="-30%" y="-30%">
-          <feGaussianBlur result="blur" stdDeviation=".7" />
           <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
         </filter>
       </defs>
@@ -30,22 +27,14 @@ export function MosaicMark() {
         <rect
           className={`mosaic-mark__tile mosaic-mark__tile--${tile.tone}`}
           filter={tile.glow ? 'url(#mosaic-mark-glow)' : undefined}
-          height="7"
+          height="6.4"
           key={`${tile.x}-${tile.y}`}
-          rx="2.15"
-          width="7"
+          rx="2.3"
+          width="6.4"
           x={tile.x}
           y={tile.y}
         />
       ))}
-      <g
-        className="mosaic-mark__exclamation"
-        clipPath="url(#mosaic-mark-grid-clip)"
-        filter="url(#mosaic-mark-exclamation-glow)"
-      >
-        <rect fill="url(#mosaic-mark-exclamation-fill)" height="24" rx="4.4" width="8.8" x="19.6" y="7.3" />
-        <circle cx="24" cy="37.2" fill="url(#mosaic-mark-exclamation-fill)" r="3.9" />
-      </g>
     </svg>
   );
 }
