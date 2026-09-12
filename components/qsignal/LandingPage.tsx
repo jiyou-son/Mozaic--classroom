@@ -12,7 +12,7 @@ import { AppShell } from './AppShell';
 import { classSession } from './mockData';
 
 const featureItems = [
-  { icon: MessageCircleMore, title: '익명 키워드 제출', description: '한 단어의 막힘도 수업 안으로' },
+  { icon: MessageCircleMore, title: '익명 질문 제출', description: '짧은 질문도 수업 안으로' },
   { icon: Cloud, title: '실시간 질문 클라우드', description: '흩어진 질문을 한눈에' },
   { icon: UsersRound, title: '나도 궁금해요', description: '말하지 못한 공감을 신호로' },
   { icon: BarChart3, title: '질문 흐름 지도', description: '흩어진 질문의 흐름을 발견' },

@@ -39,7 +39,6 @@ function getViewportDevice(): DevicePreview {
 }
 
 export function StudentPage() {
-  const [mode, setMode] = useState<'keyword' | 'question'>('keyword');
   const [input, setInput] = useState('');
   const [questions, setQuestions] = useState<Question[]>(popularQuestions);
   const [cloudClusters, setCloudClusters] = useState<Cluster[]>(clusters);
@@ -52,9 +51,7 @@ export function StudentPage() {
   const [devicePreview, setDevicePreview] = useState<DevicePreview | null>(null);
   const [viewportDevice, setViewportDevice] = useState<DevicePreview>('phone');
 
-  const placeholder = mode === 'keyword'
-    ? '예: 라그랑지안, 일반화좌표, 부호 변화'
-    : '예: 왜 여기서 뉴턴 방식 대신 라그랑지안을 쓰나요?';
+  const placeholder = '예: 왜 여기서 뉴턴 방식 대신 라그랑지안을 쓰나요?';
 
   const activeQuestionCount = useMemo(() => questions.reduce((total, question) => total + question.count, 0), [questions]);
   const selectedCluster = selectedClusterId ? cloudClusters.find((cluster) => cluster.id === selectedClusterId) ?? null : null;
@@ -100,9 +97,7 @@ export function StudentPage() {
     const target = findClusterForSignal(value, cloudClusters);
     setInputError(false);
     setCloudClusters((current) => current.map((cluster) => cluster.id === target.id ? { ...cluster, count: cluster.count + 1, studentCount: cluster.studentCount + 1 } : cluster));
-    if (mode === 'question') {
-      setQuestions((current) => [{ id: `new-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`, text: value, count: 1, clusterId: target.id }, ...current]);
-    }
+    setQuestions((current) => [{ id: `new-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`, text: value, count: 1, clusterId: target.id }, ...current]);
     setSubmitted((current) => [{ id: `signal-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`, text: value }, ...current].slice(0, 3));
     setInput('');
     setToast(true);
@@ -165,16 +160,12 @@ export function StudentPage() {
           <div className="student-device-workspace">
             <div className="student-device-workspace__compose">
               <section className="student-submit">
-                <div className="student-submit__heading"><span className="student-submit__icon"><CircleHelp size={19} /></span><div><h2>지금 어디서 막혔나요?</h2><p>한 단어만 남겨도 괜찮아요.</p></div></div>
-                <div aria-label="질문 입력 방식" className="input-tabs" role="group">
-                  <button aria-pressed={mode === 'keyword'} className={mode === 'keyword' ? 'is-active' : ''} onClick={() => setMode('keyword')} type="button">키워드</button>
-                  <button aria-pressed={mode === 'question'} className={mode === 'question' ? 'is-active' : ''} onClick={() => setMode('question')} type="button">한 줄 질문</button>
-                </div>
+                <div className="student-submit__heading"><span className="student-submit__icon"><CircleHelp size={19} /></span><div><h2>지금 어디서 막혔나요?</h2><p>짧은 질문도 괜찮아요.</p></div></div>
                 <form onSubmit={submitSignal}>
-                  <label className="sr-only" htmlFor="student-signal">질문 또는 키워드 입력</label>
-                  <textarea aria-invalid={inputError} id="student-signal" onChange={(event) => { setInput(event.target.value); setInputError(false); }} placeholder={placeholder} value={input} rows={mode === 'keyword' ? 2 : 3} />
-                  {inputError && <p className="student-input-error" role="alert">한 단어나 질문을 먼저 적어주세요.</p>}
-                  <button className="student-submit__button" type="submit">{mode === 'keyword' ? '키워드 남기기' : '질문 남기기'} <Send size={15} /></button>
+                  <label className="sr-only" htmlFor="student-signal">질문 입력</label>
+                  <textarea aria-invalid={inputError} id="student-signal" onChange={(event) => { setInput(event.target.value); setInputError(false); }} placeholder={placeholder} value={input} rows={3} />
+                  {inputError && <p className="student-input-error" role="alert">질문을 먼저 적어주세요.</p>}
+                  <button className="student-submit__button" type="submit">질문 남기기 <Send size={15} /></button>
                 </form>
               </section>
 
