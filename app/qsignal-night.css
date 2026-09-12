@@ -80,14 +80,6 @@ body {
   stroke-width: 1.1;
 }
 
-.mosaic-mark__question-trace {
-  fill: none;
-  stroke: rgba(199, 188, 255, .19);
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 3.1;
-}
-
 .mosaic-mark__tile--indigo { fill: #5c6399; }
 .mosaic-mark__tile--lavender { fill: #b7a9ee; }
 .mosaic-mark__tile--blue { fill: #8eb4ff; }
