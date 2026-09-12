@@ -11,6 +11,7 @@ import { hasJoinedSession, isValidEntryCode, markSessionJoined } from './session
 
 type Question = (typeof popularQuestions)[number];
 type SubmittedSignal = { id: string; text: string };
+type DevicePreview = 'tablet' | 'laptop';
 
 const initialClusterReactions: Record<string, number> = {
   lagrangian: 26,
@@ -39,6 +40,7 @@ export function StudentPage() {
   const [selectedClusterId, setSelectedClusterId] = useState<string | null>(null);
   const [clusterReactions, setClusterReactions] = useState(initialClusterReactions);
   const [accessReady, setAccessReady] = useState(false);
+  const [devicePreview, setDevicePreview] = useState<DevicePreview | null>(null);
 
   const placeholder = mode === 'keyword'
     ? '예: 라그랑지안, 일반화좌표, 부호 변화'
@@ -49,6 +51,8 @@ export function StudentPage() {
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
+    const requestedDevice = params.get('device');
+    if (requestedDevice === 'tablet' || requestedDevice === 'laptop') setDevicePreview(requestedDevice);
     const entryCode = params.get('code');
     if (entryCode && isValidEntryCode(entryCode)) {
       markSessionJoined();
@@ -102,7 +106,7 @@ export function StudentPage() {
 
   return (
     <AppShell active="student">
-      <main className="student-page">
+      <main className={`student-page${devicePreview ? ` student-page--preview-${devicePreview}` : ''}`}>
         <div className="student-page__intro">
           <span className="section-kicker">STUDENT VIEW</span>
           <h1>궁금한 걸, <em>그대로</em> 남겨요.</h1>
