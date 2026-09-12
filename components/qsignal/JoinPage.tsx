@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { AppShell } from './AppShell';
 import { classSession } from './mockData';
+import { MosaicMark } from './MosaicMark';
 import { extractEntryCode, getSafeStudentPath, isValidEntryCode, markSessionJoined } from './sessionAccess';
 
 type EntryStatus = 'idle' | 'error' | 'success';
@@ -67,9 +68,12 @@ export function JoinPage() {
 
         <section className="join-card" aria-labelledby="join-title">
           <div className="join-card__course">
-            <span>{classSession.university}</span>
-            <h2 id="join-title">{classSession.name}</h2>
-            <p>{classSession.instructor}</p>
+            <div className="join-card__course-copy">
+              <span className="join-card__university">{classSession.university}</span>
+              <h2 id="join-title">{classSession.name}</h2>
+              <p className="join-card__instructor">{classSession.instructor}</p>
+            </div>
+            <span aria-hidden="true" className="join-card__mark"><MosaicMark /></span>
           </div>
 
           <div className="join-methods">

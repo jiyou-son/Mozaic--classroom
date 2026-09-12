@@ -80,7 +80,7 @@ body {
 .mosaic-mark__tile--violet { fill: #9a90d6; }
 .mosaic-mark__tile--lime { fill: var(--night-lime); }
 .mosaic-mark__tile--coral { fill: var(--night-coral); }
-.mosaic-mark__question { mix-blend-mode: screen; opacity: .84; pointer-events: none; }
+.mosaic-mark__exclamation { mix-blend-mode: screen; opacity: .84; pointer-events: none; }
 
 .brand-copy strong {
   color: var(--night-text);
@@ -551,11 +551,24 @@ textarea:focus-visible {
 .join-card::after { border-color: rgba(199, 188, 255, .12); }
 
 .join-card__course {
-  border-color: var(--night-line);
-  background: linear-gradient(120deg, #242d5a, #161c40);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  border-color: rgba(199, 188, 255, .3);
+  background:
+    radial-gradient(circle at 92% 13%, rgba(199, 188, 255, .24), transparent 37%),
+    linear-gradient(120deg, #293466, #171d43 72%);
 }
 
-.join-card__course > span,
+.join-card__course-copy { min-width: 0; }
+.join-card__university {
+  display: block;
+  font-size: 9px;
+  font-weight: 850;
+  letter-spacing: .11em;
+}
+.join-card__university,
 .join-method__eyebrow { color: var(--night-lavender); }
 .join-card__course h2,
 .join-method h3,
@@ -569,6 +582,69 @@ textarea:focus-visible {
 .join-code-form {
   border-color: var(--night-line);
   background: var(--night-surface);
+}
+
+.join-card__course h2 {
+  font-weight: 850;
+  text-shadow: 0 3px 16px rgba(0, 0, 0, .2);
+}
+
+.join-card__instructor {
+  color: #d7d2f3 !important;
+  font-weight: 800;
+}
+
+.join-card__mark {
+  width: 58px;
+  height: 58px;
+  flex: 0 0 58px;
+  padding: 5px;
+  border: 1px solid rgba(199, 188, 255, .26);
+  border-radius: 18px;
+  background: rgba(9, 13, 37, .48);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .09), 0 10px 24px rgba(4, 7, 27, .24);
+}
+
+.join-method--qr {
+  border-color: rgba(201, 255, 61, .4);
+  background: linear-gradient(145deg, rgba(201, 255, 61, .14), rgba(25, 31, 67, .96) 68%);
+}
+
+.join-method--qr h3 { color: var(--night-lime); }
+.join-method--qr .join-method__icon {
+  color: var(--night-lime-ink);
+  background: var(--night-lime);
+  box-shadow: 0 7px 18px rgba(201, 255, 61, .18);
+}
+
+.join-code-form {
+  border-color: rgba(199, 188, 255, .42);
+  background: linear-gradient(145deg, rgba(199, 188, 255, .16), rgba(25, 30, 67, .98) 68%);
+}
+
+.join-code-form h3 { color: var(--night-lavender); }
+.join-code-form .join-method__icon--code {
+  color: #272047;
+  background: #d9d0ff;
+  box-shadow: 0 7px 18px rgba(199, 188, 255, .18);
+}
+
+.join-code-form .join-code-input {
+  color: var(--night-text);
+  border-color: rgba(199, 188, 255, .32);
+  background: rgba(10, 14, 38, .54);
+}
+
+.join-code-submit {
+  color: #282048;
+  background: #d9d0ff;
+  box-shadow: 0 9px 20px rgba(199, 188, 255, .17);
+}
+
+.join-code-submit:hover {
+  color: #282048;
+  background: #ece8ff;
+  box-shadow: 0 13px 26px rgba(199, 188, 255, .24);
 }
 
 .join-method__icon {
@@ -586,6 +662,23 @@ textarea:focus-visible {
 .join-status { color: var(--night-muted); background: rgba(199, 188, 255, .08); }
 .join-status.is-success { color: var(--night-lime); background: rgba(201, 255, 61, .1); }
 .join-status.is-error { color: var(--night-coral); background: rgba(255, 173, 143, .1); }
+
+.student-phone__brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.student-phone__brand-mark {
+  width: 29px;
+  height: 29px;
+  flex: 0 0 29px;
+  padding: 2px;
+  border: 1px solid rgba(199, 188, 255, .2);
+  border-radius: 10px;
+  background: rgba(17, 23, 54, .88);
+  box-shadow: 0 5px 13px rgba(0, 0, 0, .18);
+}
 
 .teacher-access {
   border-color: var(--night-line);

@@ -4,6 +4,7 @@ import { type FormEvent, useEffect, useMemo, useState } from 'react';
 import { CheckCircle2, ChevronRight, CircleHelp, Laptop, Send, Smartphone, Sparkles, Tablet, Waves } from 'lucide-react';
 import { AppShell } from './AppShell';
 import { ClusterDetail } from './ClusterDetail';
+import { MosaicMark } from './MosaicMark';
 import { QuestionCard } from './QuestionCard';
 import { WordCloud } from './WordCloud';
 import { classSession, clusters, popularQuestions, type Cluster } from './mockData';
@@ -144,7 +145,10 @@ export function StudentPage() {
           <div aria-hidden="true" className="student-phone__island"><span /></div>
           <div aria-hidden="true" className="student-device__windowbar"><span className="student-device__window-dots"><i /><i /><i /></span><span className="student-device__window-title">모자이크 · {classSession.name}</span><span className="student-device__window-state">학생 참여</span></div>
           <header className="student-phone__header">
-            <div><span className="student-phone__brand">모자이크</span><p>{classSession.university}</p></div>
+            <div className="student-phone__brand-lockup">
+              <span aria-hidden="true" className="student-phone__brand-mark"><MosaicMark /></span>
+              <div><span className="student-phone__brand">모자이크</span><p>{classSession.university}</p></div>
+            </div>
             <span className="student-live-pill"><i className="status-dot" /> 수업 진행 중</span>
           </header>
           <div className="student-phone__course">
