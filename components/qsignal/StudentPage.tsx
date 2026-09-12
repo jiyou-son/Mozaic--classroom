@@ -1,7 +1,7 @@
 'use client';
 
 import { type FormEvent, useEffect, useMemo, useState } from 'react';
-import { CheckCircle2, ChevronRight, CircleHelp, Send, Sparkles, Waves } from 'lucide-react';
+import { CheckCircle2, ChevronRight, CircleHelp, Laptop, Send, Smartphone, Sparkles, Tablet, Waves } from 'lucide-react';
 import { AppShell } from './AppShell';
 import { ClusterDetail } from './ClusterDetail';
 import { QuestionCard } from './QuestionCard';
@@ -11,7 +11,7 @@ import { hasJoinedSession, isValidEntryCode, markSessionJoined } from './session
 
 type Question = (typeof popularQuestions)[number];
 type SubmittedSignal = { id: string; text: string };
-type DevicePreview = 'tablet' | 'laptop';
+type DevicePreview = 'phone' | 'tablet' | 'laptop';
 
 const initialClusterReactions: Record<string, number> = {
   lagrangian: 26,
@@ -29,6 +29,12 @@ function findClusterForSignal(value: string, source: Cluster[]) {
   return source.find((cluster) => normalized.includes(cluster.cloudLabel.replaceAll(' ', '').toLowerCase())) ?? source[0];
 }
 
+function getViewportDevice(): DevicePreview {
+  if (window.innerWidth >= 1200) return 'laptop';
+  if (window.innerWidth >= 768) return 'tablet';
+  return 'phone';
+}
+
 export function StudentPage() {
   const [mode, setMode] = useState<'keyword' | 'question'>('keyword');
   const [input, setInput] = useState('');
@@ -41,6 +47,7 @@ export function StudentPage() {
   const [clusterReactions, setClusterReactions] = useState(initialClusterReactions);
   const [accessReady, setAccessReady] = useState(false);
   const [devicePreview, setDevicePreview] = useState<DevicePreview | null>(null);
+  const [viewportDevice, setViewportDevice] = useState<DevicePreview>('phone');
 
   const placeholder = mode === 'keyword'
     ? '예: 라그랑지안, 일반화좌표, 부호 변화'
@@ -48,11 +55,13 @@ export function StudentPage() {
 
   const activeQuestionCount = useMemo(() => questions.reduce((total, question) => total + question.count, 0), [questions]);
   const selectedCluster = selectedClusterId ? cloudClusters.find((cluster) => cluster.id === selectedClusterId) ?? null : null;
+  const activeDevice = devicePreview ?? viewportDevice;
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const requestedDevice = params.get('device');
-    if (requestedDevice === 'tablet' || requestedDevice === 'laptop') setDevicePreview(requestedDevice);
+    if (requestedDevice === 'phone' || requestedDevice === 'tablet' || requestedDevice === 'laptop') setDevicePreview(requestedDevice);
+    else setDevicePreview(null);
     const entryCode = params.get('code');
     if (entryCode && isValidEntryCode(entryCode)) {
       markSessionJoined();
@@ -69,7 +78,12 @@ export function StudentPage() {
 
     const requestedCluster = params.get('cluster');
     if (requestedCluster && clusters.some((cluster) => cluster.id === requestedCluster)) setSelectedClusterId(requestedCluster);
+    const syncViewportDevice = () => setViewportDevice(getViewportDevice());
+    syncViewportDevice();
+    window.addEventListener('resize', syncViewportDevice);
     setAccessReady(true);
+
+    return () => window.removeEventListener('resize', syncViewportDevice);
   }, []);
 
   function submitSignal(event: FormEvent<HTMLFormElement>) {
@@ -96,6 +110,13 @@ export function StudentPage() {
     setQuestions((current) => current.map((question) => question.id === id ? { ...question, count: question.count + 1 } : question));
   }
 
+  function selectDevicePreview(nextDevice: DevicePreview) {
+    setDevicePreview(nextDevice);
+    const params = new URLSearchParams(window.location.search);
+    params.set('device', nextDevice);
+    window.history.replaceState(null, '', `${window.location.pathname}?${params.toString()}${window.location.hash}`);
+  }
+
   if (!accessReady) {
     return (
       <AppShell active="student">
@@ -107,6 +128,12 @@ export function StudentPage() {
   return (
     <AppShell active="student">
       <main className={`student-page${devicePreview ? ` student-page--preview-${devicePreview}` : ''}`}>
+        <div aria-label="발표용 기기 화면 전환" className="student-device-switcher" role="group">
+          <span className="student-device-switcher__label">기기 화면</span>
+          <button aria-pressed={activeDevice === 'phone'} className={activeDevice === 'phone' ? 'is-active' : ''} onClick={() => selectDevicePreview('phone')} type="button"><Smartphone size={15} /> 휴대폰</button>
+          <button aria-pressed={activeDevice === 'tablet'} className={activeDevice === 'tablet' ? 'is-active' : ''} onClick={() => selectDevicePreview('tablet')} type="button"><Tablet size={15} /> 태블릿</button>
+          <button aria-pressed={activeDevice === 'laptop'} className={activeDevice === 'laptop' ? 'is-active' : ''} onClick={() => selectDevicePreview('laptop')} type="button"><Laptop size={15} /> 노트북</button>
+        </div>
         <div className="student-page__intro">
           <span className="section-kicker">STUDENT VIEW</span>
           <h1>궁금한 걸, <em>그대로</em> 남겨요.</h1>
