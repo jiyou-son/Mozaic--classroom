@@ -1,9 +1,9 @@
 const tiles = [
-  { x: 15, y: 8, tone: 'lavender', glow: true, question: true }, { x: 21, y: 8, tone: 'lime', glow: true, question: true }, { x: 27, y: 8, tone: 'lavender', glow: true, question: true }, { x: 33, y: 8, tone: 'blue' },
-  { x: 9, y: 14, tone: 'indigo' }, { x: 15, y: 14, tone: 'blue' }, { x: 27, y: 14, tone: 'lime', glow: true, question: true }, { x: 33, y: 14, tone: 'indigo' },
-  { x: 15, y: 20, tone: 'blue' }, { x: 21, y: 20, tone: 'lavender', glow: true, question: true }, { x: 27, y: 20, tone: 'indigo' },
-  { x: 9, y: 26, tone: 'indigo' }, { x: 15, y: 26, tone: 'blue' }, { x: 27, y: 26, tone: 'blue' }, { x: 33, y: 26, tone: 'indigo' },
-  { x: 15, y: 32, tone: 'indigo' }, { x: 21, y: 32, tone: 'lime', glow: true, question: true }, { x: 27, y: 32, tone: 'blue' },
+  { x: 15, y: 8, tone: 'lavender', glow: true, question: true }, { x: 21, y: 8, tone: 'lime', glow: true, question: true }, { x: 27, y: 8, tone: 'lavender', glow: true, question: true }, { x: 33, y: 8, tone: 'violet' },
+  { x: 9, y: 14, tone: 'violet' }, { x: 15, y: 14, tone: 'blue' }, { x: 27, y: 14, tone: 'lime', glow: true, question: true }, { x: 33, y: 14, tone: 'indigo' },
+  { x: 15, y: 20, tone: 'blue' }, { x: 21, y: 20, tone: 'lavender', glow: true, question: true }, { x: 27, y: 20, tone: 'violet' },
+  { x: 9, y: 26, tone: 'indigo' }, { x: 15, y: 26, tone: 'blue' }, { x: 27, y: 26, tone: 'violet' }, { x: 33, y: 26, tone: 'indigo' },
+  { x: 15, y: 32, tone: 'violet' }, { x: 21, y: 32, tone: 'lime', glow: true, question: true }, { x: 27, y: 32, tone: 'blue' },
 ];
 
 export function MosaicMark() {

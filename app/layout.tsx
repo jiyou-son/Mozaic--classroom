@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     siteName: '모자이크',
     type: 'website',
     url: '/',
-    images: [{ url: '/og.png', width: 1734, height: 907, alt: '모자이크 — 흩어진 질문이 모여, 모두의 깨달음이 되다.' }],
+    images: [{ url: '/og.png', width: 1733, height: 907, alt: '모자이크 — 흩어진 질문이 모여, 모두의 깨달음이 되다.' }],
   },
   twitter: {
     card: 'summary_large_image',
