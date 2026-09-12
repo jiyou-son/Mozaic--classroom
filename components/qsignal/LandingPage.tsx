@@ -54,10 +54,10 @@ export function LandingPage() {
               </div>
             </div>
 
-            <div className="signal-preview" aria-label={`${classSession.name}의 실시간 질문 시그널 미리보기`}>
+            <div className="signal-preview" aria-label={`${classSession.name}의 온라인 질문 시그널 미리보기`}>
               <div className="signal-preview__chrome">
                 <span className="status-dot" />
-                <span>실시간 신호</span>
+                <span>온라인</span>
                 <span className="signal-preview__room">{classSession.university}</span>
               </div>
               <div className="signal-preview__head">

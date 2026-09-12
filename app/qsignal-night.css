@@ -462,9 +462,19 @@ textarea:focus-visible {
   background: rgba(9, 11, 30, .8);
 }
 
-.question-card::before { background: var(--night-lime); }
-.question-card--blue::before { background: var(--night-lavender); }
-.question-card--peach::before { background: var(--night-coral); }
+.question-card::before { content: none; }
+.question-card { --question-highlight: rgba(201, 255, 61, .56); }
+.question-card--lime { --question-highlight: rgba(201, 255, 61, .62); }
+.question-card--lavender { --question-highlight: rgba(199, 188, 255, .62); }
+.question-card--blue { --question-highlight: rgba(142, 180, 255, .56); }
+.question-card--coral { --question-highlight: rgba(255, 173, 143, .58); }
+.question-card__highlight {
+  padding: 0 2px;
+  border-radius: 3px;
+  background: linear-gradient(to bottom, transparent 38%, var(--question-highlight) 38% 90%, transparent 90%);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
 .question-card__quote { color: rgba(199, 188, 255, .16); }
 .question-card p { color: var(--night-text); }
 .question-card__footer,
@@ -477,8 +487,14 @@ textarea:focus-visible {
 }
 
 .empathy-button b { color: var(--night-lavender); }
-.empathy-button:hover,
-.empathy-button:hover b { color: var(--night-lime-ink); background: var(--night-lime); }
+.empathy-button:hover { color: var(--night-lime-ink); background: var(--night-lime); }
+.empathy-button:hover b,
+.empathy-button.is-reacted b { color: inherit; background: transparent; }
+.empathy-button.is-reacted {
+  color: var(--night-lime-ink);
+  border-color: var(--night-lime);
+  background: var(--night-lime);
+}
 
 .cluster-modal__backdrop { background: rgba(3, 4, 17, .74); }
 .cluster-modal { box-shadow: 0 30px 90px rgba(0, 0, 0, .65); }
@@ -1083,6 +1099,15 @@ textarea:focus-visible {
 }
 
 .student-phone .empathy-button b { color: #4e4675; }
+
+.student-phone .empathy-button:hover { color: #4e4675; background: #f5f3fc; }
+.student-phone .empathy-button:hover b,
+.student-phone .empathy-button.is-reacted b { color: inherit; background: transparent; }
+.student-phone .empathy-button.is-reacted {
+  color: #302a54;
+  border-color: #beb5ef;
+  background: #e7e1ff;
+}
 
 .student-phone .student-phone__footer { border-color: #e3dff0; }
 .student-phone .student-phone__footer strong { color: #514779; }

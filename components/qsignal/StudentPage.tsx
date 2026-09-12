@@ -10,7 +10,7 @@ import { WordCloud } from './WordCloud';
 import { classSession, clusters, popularQuestions, type Cluster } from './mockData';
 import { hasJoinedSession, isValidEntryCode, markSessionJoined } from './sessionAccess';
 
-type Question = (typeof popularQuestions)[number];
+type Question = (typeof popularQuestions)[number] & { reacted?: boolean };
 type SubmittedSignal = { id: string; text: string };
 type DevicePreview = 'phone' | 'tablet' | 'laptop';
 
@@ -24,6 +24,8 @@ const initialClusterReactions: Record<string, number> = {
   freedom: 6,
   ltv: 14,
 };
+
+const questionAccents = ['lime', 'lavender', 'blue', 'coral'] as const;
 
 function findClusterForSignal(value: string, source: Cluster[]) {
   const normalized = value.replaceAll(' ', '').toLowerCase();
@@ -107,8 +109,12 @@ export function StudentPage() {
     window.setTimeout(() => setToast(false), 3400);
   }
 
-  function incrementQuestion(id: string) {
-    setQuestions((current) => current.map((question) => question.id === id ? { ...question, count: question.count + 1 } : question));
+  function toggleQuestionReaction(id: string) {
+    setQuestions((current) => current.map((question) => {
+      if (question.id !== id) return question;
+      const reacted = !question.reacted;
+      return { ...question, reacted, count: Math.max(0, question.count + (reacted ? 1 : -1)) };
+    }));
   }
 
   function selectDevicePreview(nextDevice: DevicePreview) {
@@ -185,7 +191,7 @@ export function StudentPage() {
             <section className="student-questions">
               <div className="student-section-head"><div><h2>많이 공감한 질문</h2></div><span className="student-questions__total">{questions.length}개</span></div>
               <div className="student-questions__list">
-                {questions.map((question, index) => <QuestionCard accent={index % 2 === 0 ? 'teal' : 'blue'} count={question.count} key={question.id} onReact={() => incrementQuestion(question.id)} text={question.text} />)}
+                {questions.map((question, index) => <QuestionCard accent={questionAccents[index % questionAccents.length]} count={question.count} key={question.id} onReact={() => toggleQuestionReaction(question.id)} reacted={question.reacted} text={question.text} />)}
               </div>
             </section>
           </div>
