@@ -74,10 +74,10 @@ body {
   filter: drop-shadow(0 5px 11px rgba(0, 0, 0, .3));
 }
 
-.mosaic-mark__tile--indigo { fill: #7884c8; }
-.mosaic-mark__tile--lavender { fill: #e1d9ff; }
-.mosaic-mark__tile--blue { fill: #8b9ae1; }
-.mosaic-mark__tile--violet { fill: #9a90d6; }
+.mosaic-mark__tile--indigo { fill: #92a6e8; }
+.mosaic-mark__tile--lavender { fill: #e5e8ff; }
+.mosaic-mark__tile--blue { fill: #a5bcff; }
+.mosaic-mark__tile--violet { fill: #b7b0f3; }
 .mosaic-mark__tile--lime { fill: var(--night-lime); }
 
 .brand-copy strong {
