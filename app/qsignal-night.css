@@ -1065,6 +1065,15 @@ textarea:focus-visible {
 
 .student-phone .student-submit textarea::placeholder { color: #9094ae; }
 
+.student-phone .student-toast {
+  color: #302955;
+  border-color: #cfc6ee;
+  background: #f0edff;
+  box-shadow: 0 9px 19px rgba(54, 44, 111, .12);
+}
+
+.student-phone .student-toast svg { color: #6254a5; }
+
 .student-phone .new-signals {
   border-color: #dfdaee;
   background: #f4f2ff;
