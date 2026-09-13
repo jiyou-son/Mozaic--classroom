@@ -1209,14 +1209,17 @@ textarea:focus-visible {
   display: flex;
   width: auto;
   height: auto;
-  align-items: flex-start;
-  justify-content: flex-end;
-  padding: 8px;
+  min-width: 0;
+  min-height: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, .24);
   border-radius: 11px;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, .3), 0 5px 11px rgba(2, 3, 19, .22);
-  text-align: left;
+  text-align: center;
   transition: box-shadow .2s ease, filter .2s ease, outline-color .2s ease;
 }
 
@@ -1232,28 +1235,30 @@ textarea:focus-visible {
 .word-cloud--student .word-cloud__word span {
   position: relative;
   z-index: 1;
-  max-width: calc(100% - 22px);
-  margin-top: auto;
+  max-width: 100%;
+  margin: 0;
   color: inherit;
   font-size: clamp(9px, 2.4vw, 13px);
   font-weight: 850;
   letter-spacing: -.065em;
   line-height: 1.12;
+  overflow-wrap: anywhere;
+  text-align: center;
   text-wrap: balance;
-  word-break: keep-all;
+  word-break: normal;
 }
 
 .word-cloud__tile small,
 .word-cloud--student .word-cloud__word small {
-  position: absolute;
+  position: relative;
   z-index: 1;
-  top: 8px;
-  right: 8px;
-  margin: 0;
+  top: auto;
+  right: auto;
+  margin: 4px 0 0;
   color: inherit;
   font-size: clamp(8px, 2vw, 10px);
   font-weight: 850;
-  line-height: 1;
+  line-height: 1.1;
   opacity: .72;
 }
 
@@ -1267,6 +1272,7 @@ textarea:focus-visible {
 .word-cloud__tile--rank-8 { grid-area: 6 / 11 / 10 / 13; }
 
 .word-cloud--student .word-cloud__word--lagrangian span { font-size: clamp(13px, 3.3vw, 17px); }
+.word-cloud__tile--rank-8 span { font-size: clamp(8px, 1.9vw, 10px); }
 
 .word-cloud__tile:hover,
 .word-cloud__tile.is-selected {
@@ -1285,21 +1291,7 @@ textarea:focus-visible {
   box-shadow: 0 0 0 4px rgba(199, 188, 255, .72);
 }
 
-.word-cloud__label {
-  z-index: 4;
-  right: 8px;
-  bottom: 8px;
-  left: auto;
-  max-width: 145px;
-  padding: 5px 7px;
-  color: #f3f0ff;
-  border: 1px solid rgba(255, 255, 255, .2);
-  border-radius: 7px;
-  background: rgba(14, 15, 46, .72);
-  font-size: 7px;
-  line-height: 1.25;
-  backdrop-filter: blur(7px);
-}
+.word-cloud__label { display: none; }
 
 @media (min-width: 768px) {
   .student-device-workspace .word-cloud--student,
@@ -1356,14 +1348,15 @@ textarea:focus-visible {
   display: flex;
   width: auto;
   height: auto;
-  align-items: flex-start;
-  justify-content: flex-end;
-  padding: 8px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, .22);
   border-radius: 11px;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, .28), 0 4px 10px rgba(2, 3, 19, .22);
-  text-align: left;
+  text-align: center;
 }
 
 .signal-bubble::after {
@@ -1376,22 +1369,24 @@ textarea:focus-visible {
 .signal-bubble strong {
   position: relative;
   z-index: 1;
-  max-width: calc(100% - 18px);
-  margin-top: auto;
+  max-width: 100%;
+  margin: 0;
   font-size: 10px;
   line-height: 1.08;
   letter-spacing: -.06em;
-  word-break: keep-all;
+  overflow-wrap: anywhere;
+  text-align: center;
+  word-break: normal;
 }
 
 .signal-bubble--primary strong { font-size: 14px; }
 
 .signal-bubble small {
-  position: absolute;
+  position: relative;
   z-index: 1;
-  top: 8px;
-  right: 8px;
-  margin: 0;
+  top: auto;
+  right: auto;
+  margin: 3px 0 0;
   font-size: 8px;
 }
 
@@ -1401,19 +1396,7 @@ textarea:focus-visible {
 .signal-bubble--sand { grid-area: sand; }
 .signal-bubble--small { grid-area: small; }
 
-.signal-board__note {
-  right: 7px;
-  bottom: 7px;
-  left: auto;
-  max-width: 130px;
-  padding: 5px 6px;
-  color: #f3f0ff;
-  border: 1px solid rgba(255, 255, 255, .2);
-  background: rgba(14, 15, 46, .72);
-  font-size: 7px;
-  line-height: 1.25;
-  backdrop-filter: blur(7px);
-}
+.signal-board__note { display: none; }
 
 /* Keep the presentation gallery in the same visual system. */
 .mini-cloud {
@@ -1443,22 +1426,25 @@ textarea:focus-visible {
   display: flex;
   width: auto;
   height: auto;
-  align-items: flex-end;
-  justify-content: flex-start;
-  padding: 6px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, .2);
   border-radius: 7px;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, .24);
   font-size: 8px;
   line-height: 1.05;
-  text-align: left;
+  overflow-wrap: anywhere;
+  text-align: center;
 }
 
 .mini-cloud i small {
-  position: absolute;
-  top: 6px;
-  right: 6px;
+  position: relative;
+  top: auto;
+  right: auto;
+  margin-top: 3px;
   font-size: 6px;
 }
 
