@@ -75,7 +75,7 @@ export function LandingPage() {
                     <strong>{word.label}</strong><small>{word.count}</small>
                   </div>
                 ))}
-                <div className="signal-board__note"><Sparkles size={13} /> AI가 유사 질문을 묶었어요</div>
+                <div className="signal-board__note"><Sparkles size={13} /> 질문이 하나의 모자이크로 모여요</div>
               </div>
               <div className="signal-preview__bottom">
                 <div><span>가장 빠르게 증가한 주제</span><strong>라그랑지안 접근 <b>↑ 42%</b></strong></div>
