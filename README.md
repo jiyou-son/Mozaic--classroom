@@ -12,6 +12,12 @@ Mosaic is a front-end prototype that turns the questions and points of confusion
 
 This prototype was built with OpenAI Codex as an implementation aid for the React and TypeScript interface, and generative image tools were used to create a storyboard explaining the service flow. The team directly led the problem definition, core feature design, anonymous-question flow, question mosaic structure, and final user-experience decisions.
 
+## Copyright
+
+© 2026 손지유 / A.I.M. All rights reserved.
+
+This repository is published for demonstration and contest review. No open-source license is granted for reuse, redistribution, or derivative works.
+
 ## Run locally
 
 ```bash
