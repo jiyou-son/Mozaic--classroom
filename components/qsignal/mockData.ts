@@ -23,6 +23,17 @@ export const classSession = {
   reactions: 246,
 };
 
+export const classSessionEn = {
+  university: 'Seoul National University',
+  name: 'Data Structures Fundamentals',
+  instructor: 'Professor Bohyeong Han',
+  accessCode: 'DS-2401',
+  date: '2026.09.09',
+  participants: 87,
+  submissions: 132,
+  reactions: 246,
+};
+
 export const clusters: Cluster[] = [
   {
     id: 'lagrangian',
@@ -144,10 +155,136 @@ export const clusters: Cluster[] = [
   },
 ];
 
+export const clustersEn: Cluster[] = [
+  {
+    id: 'lagrangian',
+    label: 'The Lagrangian approach',
+    cloudLabel: 'Lagrangian',
+    count: 31,
+    studentCount: 18,
+    trend: 'Rising fast',
+    questionCount: 6,
+    rawQuestions: [
+      'Why introduce the Lagrangian all of a sudden?',
+      'Couldn’t we solve this with Newton’s laws?',
+      'I don’t understand where L = T − V comes from.',
+      'I can’t connect generalized coordinates to the Lagrangian.',
+      'What becomes easier when we use this?',
+      'I understand the calculation, but why choose this method?',
+    ],
+    summary: 'Students are struggling less with the calculation itself and more with why the Lagrangian is chosen over Newton’s method and how it connects to generalized coordinates.',
+    actions: ['Compare Newtonian and Lagrangian methods', 'Explain when to choose generalized coordinates', 'Clarify the physical meaning of L = T − V'],
+    tone: 'teal',
+  },
+  {
+    id: 'coordinate',
+    label: 'Generalized coordinates',
+    cloudLabel: 'Generalized coordinates',
+    count: 24,
+    studentCount: 15,
+    questionCount: 4,
+    rawQuestions: [
+      'What exactly is a generalized coordinate?',
+      'Why use θ instead of x and y?',
+      'Can we choose coordinates arbitrarily?',
+      'How is this related to degrees of freedom?',
+    ],
+    summary: 'The reason for introducing a new coordinate system and its connection to degrees of freedom still feels arbitrary to many students.',
+    actions: ['Compare x, y, and θ with a pendulum example', 'Reconnect the idea to degrees of freedom', 'Summarize how to choose coordinates'],
+    tone: 'blue',
+  },
+  {
+    id: 'constraint',
+    label: 'Constraints',
+    cloudLabel: 'Constraints',
+    count: 18,
+    studentCount: 11,
+    questionCount: 3,
+    rawQuestions: [
+      'How do we put a constraint into the equation?',
+      'Why does a constraint reduce the number of coordinates?',
+      'Do we not consider the constraint force here?',
+    ],
+    summary: 'Students need a clearer bridge between constraints, reduced degrees of freedom, and how constraint forces appear in the equations.',
+    actions: ['Draw the constraint before writing equations', 'Show how the number of coordinates changes', 'Explain when constraint forces can be omitted'],
+    tone: 'mint',
+  },
+  {
+    id: 'sign',
+    label: 'Signs in the derivation',
+    cloudLabel: 'Sign changes',
+    count: 12,
+    studentCount: 8,
+    questionCount: 3,
+    rawQuestions: [
+      'Why does the sign change on this line?',
+      'Where does the minus sign come from after differentiating?',
+      'Could you show one more line of the derivation?',
+    ],
+    summary: 'Skipped algebraic steps make the sign changes during differentiation and simplification feel disconnected.',
+    actions: ['Show one more line of the derivation', 'Mark the sign-check points', 'Review the relevant differentiation step'],
+    tone: 'peach',
+  },
+  {
+    id: 'energy',
+    label: 'Energy conservation',
+    cloudLabel: 'Energy conservation',
+    count: 10,
+    studentCount: 7,
+    questionCount: 2,
+    rawQuestions: ['Why does this expression follow from energy conservation?', 'If there is friction, can we still use it directly?'],
+    summary: 'The conditions for energy conservation and its representation in the Lagrangian are being mixed together.',
+    actions: ['Review the conservation conditions', 'Compare systems with and without friction', 'Separate the energy terms by color'],
+    tone: 'lime',
+  },
+  {
+    id: 'newton',
+    label: 'Newton’s equations',
+    cloudLabel: 'Newton’s equations',
+    count: 8,
+    studentCount: 5,
+    questionCount: 2,
+    rawQuestions: ['Newton’s equations feel more familiar—why not use them?', 'Isn’t listing all the forces enough?'],
+    summary: 'The criteria for choosing between the two approaches are not yet clearly separated.',
+    actions: ['Show a side-by-side comparison', 'Use an example with complex constraints', 'Repeat the method-selection rule'],
+    tone: 'lilac',
+  },
+  {
+    id: 'freedom',
+    label: 'Degrees of freedom',
+    cloudLabel: 'Degrees of freedom',
+    count: 9,
+    studentCount: 6,
+    questionCount: 2,
+    rawQuestions: ['How do we know the system has one degree of freedom?', 'Are the number of coordinates and degrees of freedom always the same?'],
+    summary: 'The number of independently specifiable variables is not yet connected to the choice of coordinates.',
+    actions: ['Start with a pendulum example', 'Compare independent variables and coordinates'],
+    tone: 'mint',
+  },
+  {
+    id: 'ltv',
+    label: 'L = T − V',
+    cloudLabel: 'L = T − V',
+    count: 16,
+    studentCount: 10,
+    questionCount: 3,
+    rawQuestions: ['Should we just memorize L = T − V?', 'Which terms belong in T and V?', 'Why is it subtraction rather than addition?'],
+    summary: 'The meaning of the two energy terms and the reason for the sign are being confused together.',
+    actions: ['Separate T and V by color', 'Substitute them into a simple pendulum', 'Explain the physical meaning of the sign'],
+    tone: 'peach',
+  },
+];
+
 export const popularQuestions = [
   { id: 'q1', text: 'L=T-V가 왜 나오는지 모르겠음', count: 21, clusterId: 'lagrangian' },
   { id: 'q2', text: '왜 x, y 대신 theta를 쓰나요?', count: 17, clusterId: 'coordinate' },
   { id: 'q3', text: '전개 한 줄만 더 보여주세요.', count: 12, clusterId: 'sign' },
+];
+
+export const popularQuestionsEn = [
+  { id: 'q1', text: 'I don’t understand where L = T − V comes from.', count: 21, clusterId: 'lagrangian' },
+  { id: 'q2', text: 'Why use θ instead of x and y?', count: 17, clusterId: 'coordinate' },
+  { id: 'q3', text: 'Could you show one more line of the derivation?', count: 12, clusterId: 'sign' },
 ];
 
 export const reportRankings = [
@@ -156,6 +293,14 @@ export const reportRankings = [
   '구속조건',
   '수식 전개 부호 변화',
   '에너지 보존',
+];
+
+export const reportRankingsEn = [
+  'The Lagrangian approach',
+  'Generalized coordinates',
+  'Constraints',
+  'Signs in the derivation',
+  'Energy conservation',
 ];
 
 export function clusterById(id: string) {

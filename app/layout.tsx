@@ -4,6 +4,7 @@ import './qsignal.css';
 import './qsignal-overrides.css';
 import './button-fix.css';
 import './qsignal-night.css';
+import { I18nProvider } from '@/components/qsignal/i18n';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://qsignal-classroom.sonjiyou1905.chatgpt.site'),
@@ -37,7 +38,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body>{children}</body>
+      <body><I18nProvider>{children}</I18nProvider></body>
     </html>
   );
 }
