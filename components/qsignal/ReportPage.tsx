@@ -1,3 +1,5 @@
+'use client';
+
 import { BookOpenCheck, CheckCircle2, FileText, Lightbulb, MessageCircleQuestion, Sparkles, TrendingUp } from 'lucide-react';
 import { AppShell } from './AppShell';
 import { classSession, classSessionEn, clusters, clustersEn, reportRankings, reportRankingsEn } from './mockData';

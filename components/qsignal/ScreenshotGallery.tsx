@@ -1,3 +1,5 @@
+'use client';
+
 import { ArrowUpRight, Cloud, FileText, KeyRound, Laptop, QrCode, Sparkles, UserRound } from 'lucide-react';
 import { AppShell } from './AppShell';
 import { useI18n } from './i18n';
