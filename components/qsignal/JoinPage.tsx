@@ -61,7 +61,7 @@ export function JoinPage() {
     <AppShell active="student">
       <main className="join-page">
         <div className="join-page__intro">
-          <h1>{isEnglish ? <>Join the <em>same class</em>, anywhere.</> : <>어디서든, <em>같은 수업</em>에 참여하세요.</>}</h1>
+          <h1>{isEnglish ? <>Join <em>class</em>, anywhere.</> : <>어디서든, <em>같은 수업</em>에 참여하세요.</>}</h1>
           <p>{isEnglish ? 'Scan a QR code on your phone, or enter the class code directly on a laptop, tablet, or any device without a camera.' : '휴대폰은 QR로 빠르게, 카메라가 없거나 노트북·태블릿을 쓰는 경우에는 입장 코드로 바로 참여할 수 있어요.'}</p>
           <div className="join-page__device-list" aria-label={isEnglish ? 'Supported devices' : '지원 기기'}>
             <span><Smartphone size={15} /> {isEnglish ? 'Phone · QR' : '휴대폰 QR'}</span>
