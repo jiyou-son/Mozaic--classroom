@@ -15,7 +15,7 @@ export type Cluster = {
 export const classSession = {
   university: '서울대학교',
   name: '자료구조의 기초',
-  instructor: '한보형 교수',
+  instructor: '교수자',
   accessCode: 'DS-2401',
   date: '2026.09.09',
   participants: 87,
@@ -26,7 +26,7 @@ export const classSession = {
 export const classSessionEn = {
   university: 'Seoul National University',
   name: 'Data Structures Fundamentals',
-  instructor: 'Professor Bohyeong Han',
+  instructor: 'Instructor',
   accessCode: 'DS-2401',
   date: '2026.09.09',
   participants: 87,
