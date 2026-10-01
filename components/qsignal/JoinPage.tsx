@@ -96,7 +96,7 @@ export function JoinPage() {
                 <h3>{isEnglish ? 'Join with an entry code' : '입장 코드로 참여'}</h3>
                 <p id="entry-code-help">{isEnglish ? 'On a device without a camera, enter the code provided by the instructor.' : '카메라를 사용할 수 없는 기기에서는 교수자가 안내한 코드를 입력해 주세요.'}</p>
               </div>
-              <label className="sr-only" htmlFor="entry-code">입장 코드</label>
+              <label className="sr-only" htmlFor="entry-code">{isEnglish ? 'Entry code' : '입장 코드'}</label>
               <div className="join-code-form__fields">
                 <Input
                   aria-describedby="entry-code-help entry-code-demo"
