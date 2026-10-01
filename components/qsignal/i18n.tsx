@@ -9,6 +9,19 @@ function readLocale(): Locale {
   return new URLSearchParams(window.location.search).get('lang') === 'en' ? 'en' : 'ko';
 }
 
+function applyDocumentLocale(locale: Locale) {
+  document.documentElement.lang = locale;
+  document.title = locale === 'en'
+    ? 'Mosaic — Questions come together, learning moves forward'
+    : '모자이크 — 흩어진 질문이 모여, 모두의 깨달음이 되다';
+  document.querySelector('meta[name="description"]')?.setAttribute(
+    'content',
+    locale === 'en'
+      ? 'Mosaic brings students’ hidden questions back into the classroom.'
+      : '흩어진 질문이 모여, 모두의 깨달음이 되다. 모자이크는 학생들의 작은 질문 조각을 함께 볼 수 있는 수업의 그림으로 만듭니다.',
+  );
+}
+
 type I18nValue = {
   locale: Locale;
   isEnglish: boolean;
@@ -24,12 +37,12 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const nextLocale = readLocale();
     setLocaleState(nextLocale);
-    document.documentElement.lang = nextLocale;
+    applyDocumentLocale(nextLocale);
   }, []);
 
   function setLocale(nextLocale: Locale) {
     setLocaleState(nextLocale);
-    document.documentElement.lang = nextLocale;
+    applyDocumentLocale(nextLocale);
     const params = new URLSearchParams(window.location.search);
     if (nextLocale === 'en') params.set('lang', 'en');
     else params.delete('lang');
